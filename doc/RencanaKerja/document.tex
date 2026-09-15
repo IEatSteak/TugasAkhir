@@ -9,6 +9,7 @@
 \usepackage{etoolbox}
 \usepackage{setspace} 
 \usepackage{lipsum} 
+\usepackage{amsmath}
 \setlength{\headsep}{30pt}
 \usepackage[inner=2cm,outer=2.5cm,top=2.5cm,bottom=2cm]{geometry} %margin
 % \pagestyle{empty}
@@ -16,7 +17,7 @@
 \makeatletter
 \renewcommand{\@maketitle} {\begin{center} {\LARGE \textbf{ \textsc{\@title}} \par} \bigskip {\large \textbf{\textsc{\@author}} }\end{center} }
 \renewcommand{\thispagestyle}[1]{}
-\markright{\textbf{\textsc{AIF184001/AIF184002 \textemdash Rencana Kerja Tugas Akhir \textemdash Sem. Ganjil 2023/2024}}}
+\markright{\textbf{\textsc{AIF184001/AIF184002 \textemdash Rencana Kerja Tugas Akhir \textemdash Sem. Ganjil 2026/2027}}}
 
 \newcommand{\HRule}{\rule{\linewidth}{0.4mm}}
 \renewcommand{\baselinestretch}{1}
@@ -31,11 +32,12 @@
 	\author{\nama \textendash \@npm} 
 	
 	%tulis nama dan NPM anda di sini:
-	\newcommand{\nama}{Lionov}
-	\newcommand{\@npm}{1997730020}
-	\newcommand{\@judultopik}{Simulasi Kerumunan di Museum} % Judul/topik anda
+	\newcommand{\nama}{Vince Farrel Natanael}
+	\newcommand{\@npm}{6182301024}
+	\newcommand{\@judultopik}{Penerapan MA-Stat-DSM pada Pertandingan Basket} % Judul/topik anda
 	\newcommand{\jumpemb}{1} % Jumlah pembimbing, 1 atau 2
 	\newcommand{\tanggal}{01/01/1900}
+	\newcommand{\pembimbing}{Lionov, Ph.D.}
 	
 	% Dokumen hasil template ini harus dicetak bolak-balik !!!!
 	
@@ -44,69 +46,170 @@
 	\pagenumbering{arabic}
 	
 	\section{Deskripsi}
-	Tuliskan deskripsi dari topik tugas akhir yang akan anda ajukan. Di sini dapat dituliskan latar belakang, seperti apa penelitian yang sudah ada sebelumnya dan apa yang akan anda kerjakan. Sertakan gambar agar penjelasan anda menjadi lebih baik.
+
+	% Tuliskan deskripsi dari topik tugas akhir yang akan anda ajukan. Di sini dapat dituliskan latar belakang, seperti apa penelitian yang sudah ada sebelumnya dan apa yang akan anda kerjakan. Sertakan gambar agar penjelasan anda menjadi lebih baik.
+	% Pada tugas akhir ini, akan dibuat sebuah perangkat lunak yang dapat menampilkan visualisasi dan simulasi kerumunan orang yang berkunjung ke sebuah museum. Dengan menggunakan perangkat lunak tersebut, pengelola museum dapat mengatur tempat peletakan objek sehingga tidak terjadi kerumunan yang terlalu padat.
 	
-	Pada tugas akhir ini, akan dibuat sebuah perangkat lunak yang dapat menampilkan visualisasi dan simulasi kerumunan orang yang berkunjung ke sebuah museum. Dengan menggunakan perangkat lunak tersebut, pengelola museum dapat mengatur tempat peletakan objek sehingga tidak terjadi kerumunan yang terlalu padat.
+	% Dari berbagai macam teknik yang dapat digunakan untuk melakukan simulasi kerumunan, dipilih dua buah teknik yaitu teknik {\it flow tiles} dan {\it social force model (steering behaviour)}.
 	
-	Dari berbagai macam teknik yang dapat digunakan untuk melakukan simulasi kerumunan, dipilih dua buah teknik yaitu teknik {\it flow tiles} dan {\it social force model (steering behaviour)}.
+	% Dst, dst, dst, \ldots\ldots\ldots 
 	
-	Dst, dst, dst, \ldots\ldots\ldots 
+	% Perangkat lunak akan dibuat dengan bantuan {\it framework} OpenSteer. Sebagai studi kasus, museum yang digunakan untuk melakukan simulasi adalah Museum Geologi Bandung.
 	
-	Perangkat lunak akan dibuat dengan bantuan {\it framework} OpenSteer. Sebagai studi kasus, museum yang digunakan untuk melakukan simulasi adalah Museum Geologi Bandung.
+	% Dst, dst, dst, \ldots\ldots\ldots 
 	
-	Dst, dst, dst, \ldots\ldots\ldots 
+	Perkembangan teknologi pelacakan melalui media kamera dan {\it computer vision} dengan bantuan {\it artificial intelligence} memungkinkan kita untuk memperoleh data pelacakan dalam jumlah besar.
+	Berkat kemajuan teknologi  ini kami dapat mengambil data pelacakan dari jumlah entitas bergerak yang besar dan juga dapat dilakukan dengan cepat dan mudah dan dengan presisi dan granularitas yang tinggi.
+	Dengan menggunakan data pelackan ini kami dapat melakukan analisa pertandingan olahraga beregu yang lebih mendalam ini yang lebih mendalam dari sebelumnya.
+	Beberapa cabang olahraga yang mulai menggunakan teknologi baru ini untuk memperoleh data pelacakan antara lain terdapat olahraga sepak bola, tenis, voli, bola basket, dan lain-lain. 
 	
+	Dalam studi ini kita akan menerapkan metode Multi-Agent Statistically Discriminative Sub-Trajectory Mining (MA-Stat-DSM) dalam pertandingan bola basket untuk mengidentifikasi pola sub-lintasan pemain dan membedakannya kedalam dua kelompok. 
+
+	Trajectory atau lintasan merupakan sebuah jalur yang kontinu yang dilalui oleh suatu entitas yang bergerak dari satu titik ke titik yang lain dalam suatu rentang waktu.
+	Dalam sebuah lintasan, dapat dibagi lagi menjadi sub-linatasan yang merupakan bagian dari lintasan dalam rentan waktu tertentu yang merupakan bagian dari rentang waktu keseluruhan lintasan tersebut dan juga bersifat kontinu.
+
+	Data lintasan yang digunakan akan berupa spatio-temporal tracking data yang terdiri atas dua komponen utama.
+	Komponen yang pertama terdiri dari data spatio yaitu data lokasi sebuah atau beberapa entitas dalam bidang dua atau tiga dimensi dan untuk komponen kedua merupakan data temporal yaitu data waktu dimana entitas tersebut berada di suatu lokasi.
+	Dalam pertandingan bola basket, kita akan merekam lokasi dan pergerakan baik pemain pada kedua tim maupun bola basket pada setiap saat pertandingan dan akan dianalisa untuk menentukan keefektifan dari sebuah serangan yang dilakukan.
+	
+	Untuk metode yang kami akan gunakan untuk menganalisa data lintasan tersebut adalah dengan menggunakan Statistically Discriminative Sub-Trajectory Mining (Stat-DSM) untuk melakukan penambangan data lintasan pemain dengan tujuan untuk menemukan pola pergerakan dalam bentuk sub-lintasan dan membedakan sub-lintasan tersebut kedalam dua kelompok berdasarkan karateristik-karateristik pergerakan sub-lintasan tersebut.
+	Untuk studi ini kita akan menganggap suatu sub-lintasan merupakan discriminatif bila sub-lintasan tersebut serupa dengan banyak sub-lintasan lainnya dalam suatu kelompok dan tidak serupa dengan (atau hanya serupa dengan sedikit) lintasan dalam kelompok lain.
+
+	Metode Stat-DSM telah terbukti dalam menemukan sub-lintasan yang secara statistik bersifat diskriminatory dalam data angin topan dan juga dalam data kendaraan di jalan.
+	Kita dapat secara naïve menggunakan metode Stat-DSM, dengan cara menggunakan metode tersebut dalam seluruh data lintasan setiap agen.
+	Tetapi dengan menggunakan metode ini, terdapat kemungkinan kita dapat kehilangan informasi spatio-temporal yang penting dalam interaksi antar agen dan juga daya komputasi dan waktu yang diperlukan untuk menganalisis data juga lebih besar.
+	Sehingga kita tidak dapat langsung menerapkan metode Stat-DSM untuk menganalisis pertandingan bola basket.
+	Oleh karena itu diperlukan kapabilitas untuk menganalisis berbagai lintasan dari berbagai agen (pemain dan bola) untuk dapat mempertimbangkan interaksi dan beberapa sub-lintasan terhadap sub-lintasan lainnya dalam satu waktu.
+	Hal ini tidak dapat dilakukan hanya dengan menggunakan metode Stat-DSM. 
+	Diperlukannya metode untuk menganalisa sub-lintasan secara kolektif dari beberapa entitas di saat yang bersamaan.
+	Sehingga untuk studi ini kami akan akan menggunakan pengembangan dari Stat-DSM yaitu Multi-Agent Statistically Discriminative Sub-Trajectory Mining (MA-Stat-DSM).
+	Dengan menganalisa pertandingan dengan metode ini, kami dapat menarik kesimpulan yang lebih dalam mengenai keefektifan pola pergerakan pemain dan interaksi antar pemain dibandingkan hanya menggunakan statistik konvensional.
+	
+	MA-Stat-DSM bertujuan untuk mengidentifikasi sub-matriks diskriminatif yang signifikan secara statistik yang dalam sub-matrix tersebut terdiri dari sub-lintasan dari beberapa agen. 
+	Untuk dapat mengidentifikasi diskriminatif yang signifikan secara statistik, diperlukannya suatu metrik untuk jarak.
+	Dalam Stat-DSM, digunakannya Euclidean distance, namun untuk MA-Stat-DSM akan menggunakan Hausdorff distance.
+	Alasannya adalah karena dalam pertandingan basket, setiap serangan yang dilakukan memiliki panjang waktu yang berbeda.
+
+	Hausdorff distance, dinamai dari Felix Hausdorff(1868-1942) merupakan sebuah metode untuk mencari jarak dengan menghitung jarak maksimum dari suatu himpunan ke titik terdekat di himpunan lainnya. 
+	Secara formal, Hausdorff distance dari himpunan A ke himpunan B adalah fungsi maksimin, yang didefinisikan sebagai
+	\begin{equation*}
+		h(A, B) = \max_{a \in A} \{ \min_{b \in B} \{ d(a, b) \} \}
+	\end{equation*}
+	dengan a dan b masing-masing merupakan titik dari himpunan A dan B, serta d(a, b) adalah metrik apa pun di antara titik-titik tersebut.
+
+	Untuk studi ini kami akan menganalisis pertandingan bola basket dengan melihat data lintasan dari 5 agen yaitu bola basket, dua pemain yang sedanga menyerang dan dua pemain yang menjaga pemain yang menyerang tersebut.
+	Setiap matriks lintasan akan merepresentasikan pemain yang melakukan tembakan (atau jika tidak dilakukan tembakan maka pemain yang melakukan {\it turnover} yaitu saat bola dikuasai oleh tim penjaga), pemain yang melakukan pass terakhir, defender dari penembak (pemain terdekat saat tembakan dilakukan), dan defender dari passer terakhir.
+	Alasan mengapa kami membatasi untuk hanya menganalisis kelima agen tersebut adalah karena jika kita menganalisis semua data lintasan mungking terlalu beragam untuk model dapat mengambil informasi yang berguna.
+	Untuk mengapa kami menentukan peran dari kelima agen tersebut adalah untuk mengutamakan keterpahaman.
+	Karena untuk menentukan peran pemain semakin sulit, semakin bertambahnya jumlah pemain, dan jika kita menggunakan jumlah pemain yang sedikit, maka kualitas analisis akan kurang memadai.
+	Setiap matriks lintasan juga akan diberi label untuk menentukan apakah permainan yang direpresentasikan dihitung efektif atau tidak.
+	Label matriks lintasan akan ditentukan berdasarkan beberapa faktor yaitu 
+	\begin{enumerate}
+		\item Posisi penembak di lapangan.
+		\item Jarak penembak dari defender terdekat.
+		\item Persentase keberhasilan tembakan penembak tersebut.
+	\end{enumerate}
+	Keputusan mengapa terdapat beberapa faktor yang mempengaruhi label dari matriks dibandingkan menentukan label hanya dengan melihat apakah serangan diakhiri dengan skor atau tidak adalah karena adanya perbedaan keahlian dalam menembak dan juga faktor-faktor stochastik lainnya yang menyebabkan evaluasi serangan berdasarkan perolehan skor mungkin tidak dapat memberikan gambaran serangan "sukses" yang lengkap.  
+	Walaupun dapat diargumentasikan bahwa semua aksi strategis tim yang dilakukan sebelumnya juga turut berkontribusi dalam keberhasilan serangan. 
+	Tetapi kami menentukan bahwa semua upaya tersebut hanya dapat menjadi poin hanya dengan keahlian yang dimiliki oleh satu pemain yaitu pemain yang menembak.
+	Sehingga kami menganggap adanya peluang mencetak angka yang baik adalah berdasarkan data historis mencetak poin dari pemain tersebut.
+
+	Matriks lintasan
+
+	Matriks sub-lintasan
+
+	Metrik jarak antara submatriks
+
+	Trajectory sub-matrix $\varepsilon$-similar-neighborhood and support
+
 	\section{Rumusan Masalah}
-	Tuliskan rumusan dari masalah yang akan anda bahas pada tugas akhir ini. Rumusan masalah biasanya berupa kalimat pertanyaan. Gunakan penomoran untuk menuliskan rumusan masalah ini.
+	% Tuliskan rumusan dari masalah yang akan anda bahas pada tugas akhir ini. Rumusan masalah biasanya berupa kalimat pertanyaan. Gunakan penomoran untuk menuliskan rumusan masalah ini.
 	
+	\begin{enumerate}
+		\item Bagaimana data yang digunakan diproses untuk dapat digunakan oleh model.
+		\item Bagaimana implementasi metode MS-Stat-DSM untuk memproses data lintasan permainan pertandingan bola basket.
+		\item Bagaimana model MA-Stat-DSM dapat memodelkan data lintasan dari beberapa agen dan menarik lalu membedakan karateristik yang bersifat  secara statistik.
+		\item Bagaimana mengidentifikasikan pola permainan yang "berhasil", terlepas dari sekadar perolehan poin.
+	\end{enumerate}
+
 	\section{Tujuan}
-	Tuliskan tujuan dari topik tugas akhir yang anda ajukan. Tujuan penelitian biasanya berkaitan erat dengan pertanyaan yang diajukan di bagian rumusan masalah. Gunakan penomoran untuk menuliskan rumusan masalah ini, di mana tiap nomor berkaitan dengan nomor pada rumusan masalah.
+	% Tuliskan tujuan dari topik tugas akhir yang anda ajukan. Tujuan penelitian biasanya berkaitan erat dengan pertanyaan yang diajukan di bagian rumusan masalah. Gunakan penomoran untuk menuliskan rumusan masalah ini, di mana tiap nomor berkaitan dengan nomor pada rumusan masalah.
 	
+	\begin{enumerate}
+		\item Menerapkan metode pemrosesan data yang cocok.
+		\item Mencari cara untuk menggunakan metode MA-Stat-DSM untuk menganalisis data lintasan pertandingan basket.
+		\item Mengidentifikasi dan membedakan data lintasan yang bersifat diskriminatif untuk dapat mendapatkan perbedaan karateristik dalam pertandingan bola basket.
+		\item Menganalisa pola-pola sebuah lintasan dengan hubungannya terhadap hasil pertandingan, terutama serangan yang berakhir dengan sebuah tim mencetak poin atau melakukan {\it turnover}.
+	\end{enumerate}
+
 	\section{Deskripsi Perangkat Lunak}
-	Tuliskan deksripsi dari perangkat lunak yang akan anda hasilkan. Apa saja fitur yang disediakan oleh PL tersebut dan apa saja kemampuan dari PL tersebut. Perhatikan contoh di bawah ini:
+	% Tuliskan deksripsi dari perangkat lunak yang akan anda hasilkan. Apa saja fitur yang disediakan oleh PL tersebut dan apa saja kemampuan dari PL tersebut. Perhatikan contoh di bawah ini:
 	
 	Perangkat lunak akhir yang akan dibuat memiliki fitur minimal sebagai berikut:
+	% \begin{itemize}
+	% 	\item Pengguna dapat melihat denah Musem Geologi Bandung dalam bidang dua dimensi. Sedangkan pengunjung direpresentasikan menggunakan lingkaran-lingkaran kecil (tidak menggunakan gambar manusia yang diambil dari atas)
+	% 	\item Pengguna dapat memunculkan atau menghilangkan gambar {\it flow tiles} pada denah museum. 
+	% 	\item Pengguna dapat mengatur jalannya simulasi: memulai(start) simulasi, menunda(pause) simulasi, melanjutkan(continue) simulasi, maupun menghentikan(stop) simulasi
+	% 	\item Pengguna dapat mengatur banyaknya pengunjung di dalam museum, baik melalui perubahan frekuensi kedatangan pengunjung maupun menambahkan dan menghapus pengunjung satu-persatu secara manual.
+	% 	\item Posisi kamera dapat diubah (pergerakan di bidang tiga dimensi) sehingga pengguna dapat melihat simulasi di museum dari berbagai arah. 
+	% 	\item Posisi kamera dapat diubah untuk emngikuti perjalanan seorang pengunjung di dalam 
+	% 	\item Pengguna dapat memilih apakah akan menggunakan teknik {\it flow tiles} atau tidak pada saat simulasi berlangsung
+	% 	\item Jenis {\it flow tiles} yang digunakan dapat diubah-ubah pada saat simulasi sedang berlangsung
+	% \end{itemize}
+
 	\begin{itemize}
-		\item Pengguna dapat melihat denah Musem Geologi Bandung dalam bidang dua dimensi. Sedangkan pengunjung direpresentasikan menggunakan lingkaran-lingkaran kecil (tidak menggunakan gambar manusia yang diambil dari atas)
-		\item Pengguna dapat memunculkan atau menghilangkan gambar {\it flow tiles} pada denah museum. 
-		\item Pengguna dapat mengatur jalannya simulasi: memulai(start) simulasi, menunda(pause) simulasi, melanjutkan(continue) simulasi, maupun menghentikan(stop) simulasi
-		\item Pengguna dapat mengatur banyaknya pengunjung di dalam museum, baik melalui perubahan frekuensi kedatangan pengunjung maupun menambahkan dan menghapus pengunjung satu-persatu secara manual.
-		\item Posisi kamera dapat diubah (pergerakan di bidang tiga dimensi) sehingga pengguna dapat melihat simulasi di museum dari berbagai arah. 
-		\item Posisi kamera dapat diubah untuk emngikuti perjalanan seorang pengunjung di dalam 
-		\item Pengguna dapat memilih apakah akan menggunakan teknik {\it flow tiles} atau tidak pada saat simulasi berlangsung
-		\item Jenis {\it flow tiles} yang digunakan dapat diubah-ubah pada saat simulasi sedang berlangsung
-		
+		\item Pengguna dapat memasukkan data pertandingan basket yang berisi dengan informasi lintasan pemain dan bola basket serta waktunya.
+		\item Pengguna dapat memilih bagian mana pada data pertandingan yang diberikan untuk dianalisis oleh model.
+		\item Program dapat memodelkan pergerakan pemain dan bola berdasarkan data lintasan dan sub-lintasan yang dipilih oleh pengguna.
+		\item Program dapat menerapkan model MA-Stat-DSM untuk untuk mencari karateristik-karateristik diskriminan secara statistik dalam sub-lintasan yang dipilih.
+		\item Program dapat membuat kesimpulan serangan berdasarkan analisis yang telah dilakukan.
+		\item Program dapat memberikan hasil analisis dan menampilkannya dengan cara yang mudah dimengerti pengguna
+		\item Program menyediakan opsi untuk pengaturan hyperparameter. 
 	\end{itemize}
 	
 	\section{Detail Pengerjaan Tugas Akhir}
-	Tuliskan bagian-bagian pengerjaan skripsi secara detail. Bagian pekerjaan tersebut mencakup awal hingga akhir skripsi, termasuk di dalamnya pengerjaan dokumentasi skripsi, pengujian, survei, dll.
+	% Tuliskan bagian-bagian pengerjaan skripsi secara detail. Bagian pekerjaan tersebut mencakup awal hingga akhir skripsi, termasuk di dalamnya pengerjaan dokumentasi skripsi, pengujian, survei, dll.
 	
 	Bagian-bagian pekerjaan skripsi ini adalah sebagai berikut :
+	% \begin{enumerate}
+	% 	\item Melakukan survei ke Museum Geologi Bandung untuk mendapatkan denah serta mengetahui perilaku pengunjung museum secara umum (arah perjalanan, kecepatan, lama melihat objek, dll)
+	% 	\item Melakukan analisis pada hasil survei terhadap pergerakan pengunjung di museum dan membuat rancangan denah di komputer yang dilengkapi dengan penghalang dan objek di museum.
+	% 	\item Melakukan studi literatur mengenai sifat kolektif suatu kerumunan, teknik {\it social force model} dan teknik {\it flow tiles}
+	% 	\item Mempelajari bahasa pemrograman C++ dan cara menggunakan framework OpenSteer
+	% 	\item Merancang pergerakan kerumunan di dalam museum menggunakan teknik {\it social force model} dan {\it flow tiles} serta menggunakan teknik lainnya seperti konsep pathway dan waypoints. Selain itu, dirancang pula adanya waktu tunggu (pada saat pengunjung melihat objek di museum) dan cara pembuatan jalur bagi setiap individu pengunjung
+	% 	\item Melakukan analisa dan merancang struktur data yang cocok untuk menyimpan penghalang (obstacle)
+	% 	\item Mengimplementasikan keseluruhan algoritma dan struktur data yang dirancang, dengan menggunakan framework OpenSteer 
+	% 	\item Melakukan pengujian (dan eksperimen) yang melibatkan responde untuk menilai hasil simulasi secara kualitatif
+	% 	\item Menulis dokumen tugas akhir.
+	% \end{enumerate}
+
 	\begin{enumerate}
-		\item Melakukan survei ke Museum Geologi Bandung untuk mendapatkan denah serta mengetahui perilaku pengunjung museum secara umum (arah perjalanan, kecepatan, lama melihat objek, dll)
-		\item Melakukan analisis pada hasil survei terhadap pergerakan pengunjung di museum dan membuat rancangan denah di komputer yang dilengkapi dengan penghalang dan objek di museum.
-		\item Melakukan studi literatur mengenai sifat kolektif suatu kerumunan, teknik {\it social force model} dan teknik {\it flow tiles}
-		\item Mempelajari bahasa pemrograman C++ dan cara menggunakan framework OpenSteer
-		\item Merancang pergerakan kerumunan di dalam museum menggunakan teknik {\it social force model} dan {\it flow tiles} serta menggunakan teknik lainnya seperti konsep pathway dan waypoints. Selain itu, dirancang pula adanya waktu tunggu (pada saat pengunjung melihat objek di museum) dan cara pembuatan jalur bagi setiap individu pengunjung
-		\item Melakukan analisa dan merancang struktur data yang cocok untuk menyimpan penghalang (obstacle)
-		\item Mengimplementasikan keseluruhan algoritma dan struktur data yang dirancang, dengan menggunakan framework OpenSteer 
-		\item Melakukan pengujian (dan eksperimen) yang melibatkan responde untuk menilai hasil simulasi secara kualitatif
-		\item Menulis dokumen tugas akhir.
+		\item Melakukan studi literatur mengenai lintasan dan bagaimana cara untuk menganalisanya.
+		\item Mempelajari dan menguasai metode MA-Stat-DSM serta memahami konsep-konsep lainnya yang berhubungan.
+		\item Mempelajari bahasa pemrograman pilihan dan {\it library} yang hendak digunakan. 
+		\item Merancang startegi pra-pemrosesan untuk data yang digunakan.
+		\item Menganalisa dan memodelkan data lintasan pemain dan fitur-fitur lainnya yang bersifat diskriminatif yang dapat memberikan informasi mengenai pergerakan kedua tim dan entitas lainnya yang berhubungan.
+		\item Implementasi metode MA-Stat-DSM dengan menggunakan bahasa pemrograman pilihan.
+		\item (maybe) Membuat dasbor untuk menampilkan hasil keluaran model.
+		\item Melakukan pengujian dan eksperimen dengan dataset yang tersedia untuk menilai kinerja model.
+		\item (maybe) Mempersiapkan dokumentasi program yang lengkap.
+		\item Mempersiapkan dokumen tugas akhir. 
 	\end{enumerate}
 	
 	\section{Rencana Kerja}
 	Rincian capaian yang direncanakan di Tugas Akhir 1 adalah sebagai berikut:
 	\begin{enumerate}
-		\item
-		\item
-		\item
+		\item Melakukan studi literatur secara mendalam mengenai konsep Machine Learning dan Data Mining
+		\item Mempelajari penggunaan bahasa pemrograman pilihan
+		\item Mempelajari dan memahami library yang hendak digunakan
+		\item Menyusun dokumen laporan Tugas Akhir 1
 	\end{enumerate}
 	
 	Sedangkan yang akan diselesaikan di Tugas Akhir 2 adalah sebagai berikut:
 	\begin{enumerate}
 		\item
 		\item
-		\item
+		\item Menyusun dokumen laporan Tugas Akhir 2
 	\end{enumerate}
 	
 	\vspace{1cm}
@@ -129,6 +232,6 @@
 		\vspace{0.5cm}
 	}{
 		% \centering Bandung, \makebox[0.5cm]{\hrulefill}/\makebox[0.5cm]{\hrulefill}/2013\\
-		\vspace{2cm} Nama: \makebox[3cm]{\hrulefill}\\ Pembimbing Tunggal
+		\vspace{2cm} Nama: \pembimbing\makebox[3cm]{\hrulefill}\\ Pembimbing Tunggal
 	}
 \end{document}
