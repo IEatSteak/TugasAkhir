@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1789554946.71809 "c:/Unpar/TA/TA1/TugasAkhir/doc/RencanaKerja/document.tex" "document.pdf" "document" 1789554948.89452 0
+["pdflatex"] 1789571439.69297 "c:/Unpar/TA/TA1/TugasAkhir/doc/RencanaKerja/document.tex" "document.pdf" "document" 1789571440.67749 0
   "C:/Users/Vince Farrel. N/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1789517981 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/Vince Farrel. N/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecbx1440.pk" 1788961907 40136 b107594545c0e53137de0d3105762368 ""
   "C:/Users/Vince Farrel. N/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecoc1000.pk" 1788961916 32528 7c09157641901dacbe42139bb6bdbf65 ""
@@ -78,9 +78,9 @@
   "C:/Users/Vince Farrel. N/AppData/Local/Programs/MiKTeX/tex/latex/preprint/fullpage.sty" 1369148873 2867 05b418f78b224ec872f5b11081138605 ""
   "C:/Users/Vince Farrel. N/AppData/Local/Programs/MiKTeX/tex/latex/setspace/setspace.sty" 1670403145 22490 8cac309b79a4c53a4ffce4b1b07aead0 ""
   "C:/Users/Vince Farrel. N/AppData/Local/Programs/MiKTeX/tex/latex/tools/bm.sty" 1780057721 13389 5947b32308246a5315379e60aa5a3346 ""
-  "c:/Unpar/TA/TA1/TugasAkhir/doc/RencanaKerja/document.tex" 1789554945 21435 6963399c8ff4421953961dce1851316f ""
-  "document.aux" 1789554948 774 2f4645f177f5d109e352cdcf10b66ee3 "pdflatex"
-  "document.tex" 1789554945 21435 6963399c8ff4421953961dce1851316f ""
+  "c:/Unpar/TA/TA1/TugasAkhir/doc/RencanaKerja/document.tex" 1789571439 26132 a2346f3b237749b195c5e802b1f54710 ""
+  "document.aux" 1789571440 774 d055be5c5df429a2fd23cb7badaf3cf6 "pdflatex"
+  "document.tex" 1789571439 26132 a2346f3b237749b195c5e802b1f54710 ""
   (generated)
   "document.aux"
   "document.log"
