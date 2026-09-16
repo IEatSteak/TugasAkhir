@@ -10,6 +10,7 @@
 \usepackage{setspace} 
 \usepackage{lipsum} 
 \usepackage{amsmath}
+\usepackage{bm}
 \setlength{\headsep}{30pt}
 \usepackage[inner=2cm,outer=2.5cm,top=2.5cm,bottom=2cm]{geometry} %margin
 % \pagestyle{empty}
@@ -36,8 +37,8 @@
 	\newcommand{\@npm}{6182301024}
 	\newcommand{\@judultopik}{Penerapan MA-Stat-DSM pada Pertandingan Basket} % Judul/topik anda
 	\newcommand{\jumpemb}{1} % Jumlah pembimbing, 1 atau 2
-	\newcommand{\tanggal}{01/01/1900}
 	\newcommand{\pembimbing}{Lionov, Ph.D.}
+	\newcommand{\tanggal}{01/01/1900}
 	
 	% Dokumen hasil template ini harus dicetak bolak-balik !!!!
 	
@@ -97,11 +98,11 @@
 	\end{equation*}
 	dengan a dan b masing-masing merupakan titik dari himpunan A dan B, serta d(a, b) adalah metrik apa pun di antara titik-titik tersebut.
 
-	Untuk studi ini kami akan menganalisis pertandingan bola basket dengan melihat data lintasan dari 5 agen yaitu bola basket, dua pemain yang sedanga menyerang dan dua pemain yang menjaga pemain yang menyerang tersebut.
+	Untuk studi ini kami akan menganalisis pertandingan bola basket dengan melihat data lintasan dari 5 agen yaitu bola basket, dua pemain yang sedang menyerang dan dua pemain yang menjaga pemain yang menyerang tersebut.
 	Setiap matriks lintasan akan merepresentasikan pemain yang melakukan tembakan (atau jika tidak dilakukan tembakan maka pemain yang melakukan {\it turnover} yaitu saat bola dikuasai oleh tim penjaga), pemain yang melakukan pass terakhir, defender dari penembak (pemain terdekat saat tembakan dilakukan), dan defender dari passer terakhir.
-	Alasan mengapa kami membatasi untuk hanya menganalisis kelima agen tersebut adalah karena jika kita menganalisis semua data lintasan mungking terlalu beragam untuk model dapat mengambil informasi yang berguna.
-	Untuk mengapa kami menentukan peran dari kelima agen tersebut adalah untuk mengutamakan keterpahaman.
-	Karena untuk menentukan peran pemain semakin sulit, semakin bertambahnya jumlah pemain, dan jika kita menggunakan jumlah pemain yang sedikit, maka kualitas analisis akan kurang memadai.
+	% Alasan mengapa kami membatasi untuk hanya menganalisis kelima agen tersebut adalah karena jika kita menganalisis semua data lintasan mungking terlalu beragam untuk model dapat mengambil informasi yang berguna.
+	% Untuk mengapa kami menentukan peran dari kelima agen tersebut adalah untuk mengutamakan keterpahaman.
+	% Karena untuk menentukan peran pemain semakin sulit, semakin bertambahnya jumlah pemain, dan jika kita menggunakan jumlah pemain yang sedikit, maka kualitas analisis akan kurang memadai.
 	Setiap matriks lintasan juga akan diberi label untuk menentukan apakah permainan yang direpresentasikan dihitung efektif atau tidak.
 	Label matriks lintasan akan ditentukan berdasarkan beberapa faktor yaitu 
 	\begin{enumerate}
@@ -114,13 +115,32 @@
 	Tetapi kami menentukan bahwa semua upaya tersebut hanya dapat menjadi poin hanya dengan keahlian yang dimiliki oleh satu pemain yaitu pemain yang menembak.
 	Sehingga kami menganggap adanya peluang mencetak angka yang baik adalah berdasarkan data historis mencetak poin dari pemain tersebut.
 
-	Matriks lintasan
+	Lintasan $T_{i,k}$ pada matrix $i$ terdiri dari $m_i$ buah data lintasan dari agen $k$ yang dinotasikan dengan \[ T_{i,k} = \{(x_{1,k}, y_{1,k}), (x_{2,k}, y_{2,k}), \dots, (x_{m_i,k}, y_{m_i,k})\} \]
+	Matrik lintasan $i$ memuat semua lintasan dari $K$ agen dalam sebuah serangan, memiliki $m_i$ kolom dan dinotasikan sebagai $\bm{T}_{i,K}$.
+	Terdapat $N$ buah matriks lintasan dalam setiap pertandingan $M$.
+	Setiap matriks lintasan mengambil label $g_i = \{+1,-1\}$, dan $G_+ = \{\bm{T}_{i,K}\ |\ g_i = +1\}$ dan $G_- = \{\bm{T}_{i,K}\ |\ g_i = -1\}$.
+	Label tersebut menandakan apakah serangan yang direpresentasikan oleh matriks lintasan tersebut dianggap "efektif" atau "tidak efektif"
 
-	Matriks sub-lintasan
+	Sub-matriks lintasan dinotasikan dengan $\bm{T}_{i,K}^{(s,e)}$ merupakan sebuah urutan kolom dari matriks lintasan $\bm{T}_{i,K}$ yang dimulai dari kolom $s$ dan diakhiri dengan kolom $e$ dengan jumlah baris $|K|$ yang tetap.
+	Setiap sub-matriks $i$ memiliki panjang $|\bm{T}_{i,K}^{(s,e)}| \ge L$, dimana $L$ adalah parameter yang ditetapkan sebelumnya oleh pengguna yang menandakan panjang minimum (jumlah kolom minimum) dari sub-matriks lintasan.
+	Sub-matriks lintasan dinotasikan dengan $\bm{T}_{i,K}^{(s,e)} \sqsubseteq \bm{T}_{i,K}$ yang menandakan bahwa $\bm{T}_{i,K}^{(s,e)}$ merupakan sub-matriks lintasan dari $\bm{T}_{i,K}$.
 
-	Metrik jarak antara submatriks
-
-	Trajectory sub-matrix $\varepsilon$-similar-neighborhood and support
+	------------------------------------------------
+	
+	Kita sebagai makhluk yang hidup pasti pernah bergerak.
+	Sebagian besar hewan di dunia harus bergerak demi kelangsungan hidupnya, baik untuk melarikan diri dari bahaya maupun untuk mencari makan.
+	Manusia tidak ada bedanya, setiap manusia memiliki aspirasi, keinginan, dan tujuan dalam hidup kami, dan untuk dapat mencapai tujuan kita, kita harus bergerak menuju tujuan tersebut.
+	Setiap hari banyak orang di dunia bergerak untuk mencapai lokasi-lokasi dimana mereka dapat bekerja, belajar, berekreasi, dan lain-lain.
+	
+	Karena pergerakan merupakan aspek yang sangat penting dalam kehidupan manusia, sepanjang sejarah, orang-orang telah menciptakan berbagai inovasi agar dapat berpindah tempat dengan lebih efisien.
+	Upaya manusia dalam meningkatkan efisiensi untuk bergerak sudah dimulai jauh di masa lalu, sejak tahun 4000 BCE dimana manusia sudah mulai menjinakan binatang-binatang seperti kuda hingga 3500 BCE, saat roda pertama ditemukan di Mesopotamia.
+	Perkembangan tidak berhenti disana dan terus berlanjut hingga tahun 1814 dimana seseorang bernama George Stephenson membuat mesin uap lokomotif pertama yang memungkinkan perjalanan darat secara massal.
+	Lalu juga pada tahun 1886 saat Carl Benz membuat mobil bermesin bensin pertama dan Henry Ford, yang mengotomatisasi perakitan mobil sehingga menjadikannya terjangkau dan lebih mudah diakses.
+	Bahkan perkembangan tidak berhenti dalam daratan.
+	Pada tahun 1903 sepasang saudara Wilbur dan Orville atau yang lebih dikenalnya atas nama Wright brothers berhasil menaklukan langit untuk pertama kalinya yang membuat yang membantu orang dapat menempuh jarak yang sangat jauh dengan cepat.
+	Dan tentunya kami tiba di era modern sekarang dimana perkembangan pada teknologi transportasi memperkenalkan kita kepada teknologi-teknologi seperti kereta cepat dan {\it electric vehicle} atau EVs.
+	
+	
 
 	\section{Rumusan Masalah}
 	% Tuliskan rumusan dari masalah yang akan anda bahas pada tugas akhir ini. Rumusan masalah biasanya berupa kalimat pertanyaan. Gunakan penomoran untuk menuliskan rumusan masalah ini.
