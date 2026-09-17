@@ -11,6 +11,7 @@
 \usepackage{lipsum} 
 \usepackage{amsmath}
 \usepackage{bm}
+\usepackage{subcaption}
 \setlength{\headsep}{30pt}
 \usepackage[inner=2cm,outer=2.5cm,top=2.5cm,bottom=2cm]{geometry} %margin
 % \pagestyle{empty}
@@ -139,6 +140,14 @@
 	Bahkan perkembangan tidak berhenti dalam daratan.
 	Pada tahun 1903 sepasang saudara Wilbur dan Orville atau yang lebih dikenalnya atas nama Wright brothers berhasil menaklukan langit untuk pertama kalinya yang membuat yang membantu orang dapat menempuh jarak yang sangat jauh dengan cepat.
 	Dan tentunya kami tiba di era modern sekarang dimana perkembangan pada teknologi transportasi memperkenalkan kita kepada teknologi-teknologi seperti kereta cepat dan {\it electric vehicle} atau EVs.
+
+	\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{img/transportation.jpg}
+    \caption{Kendaraan buatan manusia}
+    \label{fig:man-madeTransportation}
+	\end{figure}
+
 	
 	Dapat dilihat dari sejarah manusia dan perkembangan teknologi kami bahwa manusia sangat berupaya untuk memaksimalkan efisiensi pergerakan. Oleh karena itu terdapat banyak ketertarikan dari berbagai orang untuk mempelajari pergerakan-pergerakan yang kita lakukan. 
 	Di zaman modern ini terutama, dikarenakan ketertarikan yang dimiliki banyak orang, perkembangan teknologi pelacakan juga bertumbuh dengan pesat. Dimulai dari saat tahun 1930s-1960s dimana pelacakan hanya dilakukan dengan observasi mata atau fotografi dari udara.
@@ -147,28 +156,51 @@
 	Zaman dahulu, jumlah data pergerakan tidak banyak dan kualitas dari data-data tersebut juga tidak bagus.
 	Namun sekarang, karena perkembangan dari teknologi pelacakan menyebabkan lonjakan dalam jumlah dan kualitas data pergerakan.
 	Sekarang data pergerakan dapat didapatkan dengan menggunakan lintasan ({\it trajectory}) dari sebuah entitas yang bergerak. 
+
 	Berbeda dengan sebelumnya, teknologi pelacakan seringkali digunakan untuk melacak pergerakan mobil di jalan atau bencana-bencana seperti angin topan, dan lain-lain.
-	Namun berkat perkembangan teknologi dalam bidang (\it computer vision) membuat pengumpulan data lintasan di bidang lain jauh lebih mudah dilakukan.
-	Salah satu bidang yang terdampak besar dari perubahan ini merupakan bidang olahraga.
-	Sekarang berbagai organisasi-organisasi dari berbagai cabang olahraga di dunia sudah mulai untuk mengambil data seperti contohnya olahraga baseball dimana organisasi dengan nama MLB mengambil data lintasan dari bola yang dilempar untuk mendapatkan berbagai informasi seperti kecepatan, putaran, dan lain-lain.
+	Namun berkat perkembangan teknologi dalam bidang {\it computer vision} membuat pengumpulan data lintasan di bidang lain jauh lebih mudah dilakukan.
+	Salah satu bidang yang terdampak besar dari perubahan ini merupakan pada bidang olahraga dimana sudah banyak diimplementasi oleh berbagai cabang untuk membantu proses pengambilan keputusan.
+	Sekarang berbagai organisasi-organisasi dari berbagai cabang olahraga di dunia sudah mulai mengimplementasikan teknologi pengambilan data seperti contohnya olahraga baseball dimana organisasi dengan nama MLB mengambil data lintasan dari bola yang dilempar untuk mendapatkan berbagai informasi seperti kecepatan, putaran, dan lain-lain.
 	Atau Tennis dimana organisasi seperti ITF, ATP, WTA menggunakan data lintasan untuk menentukan lokasi bola pada setiap saat.
 	Ataupun dalam cabang olahraga sepak bola dimana tidak hanya bola yang dilacak, tetapi juga seluruh pemain-pemain.
 	Semua cabang olahraga yang disebutkan tadi dan masih banyak cabang olahraga lainnya telah mengimplementasikan teknologi tersebut untuk membantu mengembangkan kualitas permainan dari cabang olahraga mereka masing-masing.
 	
+	\begin{figure}[htbp]
+	\centering
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{img/trajectoryCollection.jpg}
+        \caption{Pengambilan data lintasan pada kendaraan}
+		\label{fig:trajectoryDataCollectionOnVehicle}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{img/performanceAnalysisOnSoccer.jpg}
+        \caption{Analisis performa dalam olahraga sepak bola}
+		\label{fig:trajectoryAnalysisOnSoccer}
+    \end{subfigure}
+	\caption{Penggunaan data lintasan dalam kehidupan}
+    \label{fig:examplesOfTrajectoryInTheWorld}
+	\end{figure}
+	
 	Selain untuk pelacakan, terdapat juga berbagai contoh lainnya untuk penggunaan data lintasan. 
 	Salah satu penggunaan lainnya untuk data ini adalah untuk analisis yang dapat membantu orang untuk mengambil keputusan berdasarkan hasil analisis tersebut. 
 	Beberapa contohnya adalah dalam bidang perencanaan kota dan infrastruktur dimana sebuah riset mengenai penambangan data lintasan dengan Microsoft Research Asia (MSRA) oleh Yu Zheng (2015) memanfaatkan dataset GeoLife dan dataset T-Drive untuk memetakan arus kemacetan, mendeteksi moda transportasi penduduk, serta merencanakan jaringan jalan.
-	Ataupun sebuah studi yang dilakukan dari Departemen Transportasi Maryland dengan judul Applications of Trajectory Data From the Perspective of a Road Transportation Agency: Literature Review and Maryland Case Study oleh Nikola Markovic yang menganalisis jutaan titik lintasan GPS untuk meningkatkan keefektifan rute yang diambil bus.
+	Ataupun sebuah studi yang dilakukan dari Departemen Transportasi Maryland dengan judul Applications of Trajectory Data From the Perspective of a Road Transportation Agency: Literature Review and Maryland Case Study oleh Nikola Markovic yang menganalisis jutaan titik lintasan GPS untuk meningkatkan keefektifan rute yang diambil bus dan untuk membantu proses merencanakan lokasi pemeliharaan jalan.
 	
 	{\it Trajectory} atau lintasan merupakan sebuah jalur yang kontinu yang dilalui oleh suatu entitas yang bergerak dari satu titik ke titik yang lain dalam suatu rentang waktu.
 	Dalam sebuah lintasan, dapat dibagi lagi menjadi sub-linatasan yang merupakan bagian dari lintasan dalam rentan waktu tertentu yang merupakan bagian dari rentang waktu keseluruhan lintasan tersebut dan juga bersifat kontinu.
 	Karena keterbatasan teknologi, lintasan yang didapatkan tidak bisa benar-benar bersifat kontinu.
 	Hal ini dikarenakan teknologi yang digunakan seringkali hanya dapat mencatat lokasi entitas setiap interval waktu tertentu.
 
-	Data lintasan yang digunakan akan berupa spatio-temporal tracking data yang terdiri atas dua komponen utama.
+	Data lintasan yang digunakan berupa spatio-temporal tracking data yang terdiri atas dua komponen utama.
 	Komponen yang pertama terdiri dari data spatio yaitu data lokasi sebuah atau beberapa entitas dalam bidang dua atau tiga dimensi dan untuk komponen kedua merupakan data temporal yaitu data waktu dimana entitas tersebut berada di suatu lokasi.
-	Dalam pertandingan bola basket, kita akan merekam lokasi dan pergerakan baik pemain pada kedua tim maupun bola basket pada setiap saat pertandingan dan akan dianalisa untuk menentukan keefektifan dari sebuah serangan yang dilakukan.
+	Kedua komponen tersebut saat disatukan membentuk data yang dapat menjelaskan dimana suatu entitas berada pada suatu waktu tertentu.
+	Dengan jumlah yang banyak dan dengan waktu yang kontinu, dapat digabung dan menjadi data lintasan entitas tersebut yang memperlihatkan pergerakan entitas tersebut.
 	
+
+
 	Seiring dengan perkembangan teknologi pengambilan pergerakan, dibuat juga berbagai metode untuk memproses data-data yang dikumpulkan.
 	
 

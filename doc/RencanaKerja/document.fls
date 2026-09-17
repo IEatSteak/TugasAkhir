@@ -67,6 +67,12 @@ INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\tex\latex\amsmath\a
 INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\tex\latex\amsmath\amsopn.sty
 INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\tex\latex\tools\bm.sty
 INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\tex\latex\tools\bm.sty
+INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\tex\latex\caption\subcaption.sty
+INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\tex\latex\caption\subcaption.sty
+INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\tex\latex\caption\caption.sty
+INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\tex\latex\caption\caption.sty
+INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\tex\latex\caption\caption3.sty
+INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\tex\latex\caption\caption3.sty
 INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\tex\latex\geometry\geometry.sty
 INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\tex\latex\geometry\geometry.sty
 INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\tex\generic\iftex\ifvtex.sty
@@ -113,10 +119,34 @@ INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\fonts\tfm\public\am
 INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbsy10.tfm
 INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmbsy7.tfm
 INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmbsy5.tfm
+INPUT .\img\transportation.jpg
+INPUT .\img\transportation.jpg
+INPUT .\img\transportation.jpg
+INPUT .\img\transportation.jpg
+INPUT .\img\transportation.jpg
+INPUT .\img\transportation.jpg
+INPUT .\img\transportation.jpg
+INPUT .\img\trajectoryCollection.jpg
+INPUT .\img\trajectoryCollection.jpg
+INPUT .\img\trajectoryCollection.jpg
+INPUT .\img\trajectoryCollection.jpg
+INPUT .\img\trajectoryCollection.jpg
+INPUT .\img\trajectoryCollection.jpg
+INPUT .\img\trajectoryCollection.jpg
+INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecrm0900.tfm
+INPUT .\img\performanceAnalysisOnSoccer.jpg
+INPUT .\img\performanceAnalysisOnSoccer.jpg
+INPUT .\img\performanceAnalysisOnSoccer.jpg
+INPUT .\img\performanceAnalysisOnSoccer.jpg
+INPUT .\img\performanceAnalysisOnSoccer.jpg
+INPUT .\img\performanceAnalysisOnSoccer.jpg
+INPUT .\img\performanceAnalysisOnSoccer.jpg
 INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\tcrm1000.tfm
 INPUT document.aux
 INPUT C:\Users\Vince Farrel. N\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\tcrm1000.pk
 INPUT C:\Users\Vince Farrel. N\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\tcrm1000.pk
+INPUT C:\Users\Vince Farrel. N\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0900.pk
+INPUT C:\Users\Vince Farrel. N\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0900.pk
 INPUT C:\Users\Vince Farrel. N\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecti1000.pk
 INPUT C:\Users\Vince Farrel. N\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecti1000.pk
 INPUT C:\Users\Vince Farrel. N\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1440.pk
