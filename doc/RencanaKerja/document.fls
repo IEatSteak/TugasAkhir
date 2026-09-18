@@ -103,29 +103,18 @@ INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\
 INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecrm1440.tfm
 INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecbx1440.tfm
 INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecti1000.tfm
+INPUT .\img\transportation.jpg
+INPUT .\img\transportation.jpg
+INPUT .\img\transportation.jpg
+INPUT .\img\transportation.jpg
+OUTPUT document.pdf
+INPUT .\img\transportation.jpg
+INPUT .\img\transportation.jpg
+INPUT .\img\transportation.jpg
 INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecsl1000.tfm
 INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecbl1000.tfm
 INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecoc1000.tfm
-OUTPUT document.pdf
 INPUT C:\Users\Vince Farrel. N\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
-INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
-INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
-INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
-INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx7.tfm
-INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx5.tfm
-INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmmib10.tfm
-INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmmib7.tfm
-INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmmib5.tfm
-INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbsy10.tfm
-INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmbsy7.tfm
-INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmbsy5.tfm
-INPUT .\img\transportation.jpg
-INPUT .\img\transportation.jpg
-INPUT .\img\transportation.jpg
-INPUT .\img\transportation.jpg
-INPUT .\img\transportation.jpg
-INPUT .\img\transportation.jpg
-INPUT .\img\transportation.jpg
 INPUT .\img\trajectoryCollection.jpg
 INPUT .\img\trajectoryCollection.jpg
 INPUT .\img\trajectoryCollection.jpg
@@ -141,6 +130,31 @@ INPUT .\img\performanceAnalysisOnSoccer.jpg
 INPUT .\img\performanceAnalysisOnSoccer.jpg
 INPUT .\img\performanceAnalysisOnSoccer.jpg
 INPUT .\img\performanceAnalysisOnSoccer.jpg
+INPUT .\img\nbaMatch.jpg
+INPUT .\img\nbaMatch.jpg
+INPUT .\img\nbaMatch.jpg
+INPUT .\img\nbaMatch.jpg
+INPUT .\img\nbaMatch.jpg
+INPUT .\img\nbaMatch.jpg
+INPUT .\img\nbaMatch.jpg
+INPUT .\img\StatDSMTrajectory.jpeg
+INPUT .\img\StatDSMTrajectory.jpeg
+INPUT .\img\StatDSMTrajectory.jpeg
+INPUT .\img\StatDSMTrajectory.jpeg
+INPUT .\img\StatDSMTrajectory.jpeg
+INPUT .\img\StatDSMTrajectory.jpeg
+INPUT .\img\StatDSMTrajectory.jpeg
+INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
+INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
+INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
+INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx7.tfm
+INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx5.tfm
+INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmmib10.tfm
+INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmmib7.tfm
+INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmmib5.tfm
+INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbsy10.tfm
+INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmbsy7.tfm
+INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmbsy5.tfm
 INPUT C:\Users\Vince Farrel. N\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\tcrm1000.tfm
 INPUT document.aux
 INPUT C:\Users\Vince Farrel. N\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\tcrm1000.pk

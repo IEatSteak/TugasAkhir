@@ -60,75 +60,7 @@
 	
 	% Dst, dst, dst, \ldots\ldots\ldots 
 	
-	Perkembangan teknologi pelacakan melalui media kamera dan {\it computer vision} dengan bantuan {\it artificial intelligence} memungkinkan kita untuk memperoleh data pelacakan dalam jumlah besar.
-	Berkat kemajuan teknologi  ini kami dapat mengambil data pelacakan dari jumlah entitas bergerak yang besar dan juga dapat dilakukan dengan cepat dan mudah dan dengan presisi dan granularitas yang tinggi.
-	Dengan menggunakan data pelackan ini kami dapat melakukan analisa pertandingan olahraga beregu yang lebih mendalam ini yang lebih mendalam dari sebelumnya.
-	Beberapa cabang olahraga yang mulai menggunakan teknologi baru ini untuk memperoleh data pelacakan antara lain terdapat olahraga sepak bola, tenis, voli, bola basket, dan lain-lain. 
-	
-	Dalam studi ini kita akan menerapkan metode Multi-Agent Statistically Discriminative Sub-Trajectory Mining (MA-Stat-DSM) dalam pertandingan bola basket untuk mengidentifikasi pola sub-lintasan pemain dan membedakannya kedalam dua kelompok. 
-
-	Trajectory atau lintasan merupakan sebuah jalur yang kontinu yang dilalui oleh suatu entitas yang bergerak dari satu titik ke titik yang lain dalam suatu rentang waktu.
-	Dalam sebuah lintasan, dapat dibagi lagi menjadi sub-linatasan yang merupakan bagian dari lintasan dalam rentan waktu tertentu yang merupakan bagian dari rentang waktu keseluruhan lintasan tersebut dan juga bersifat kontinu.
-
-	Data lintasan yang digunakan akan berupa spatio-temporal tracking data yang terdiri atas dua komponen utama.
-	Komponen yang pertama terdiri dari data spatio yaitu data lokasi sebuah atau beberapa entitas dalam bidang dua atau tiga dimensi dan untuk komponen kedua merupakan data temporal yaitu data waktu dimana entitas tersebut berada di suatu lokasi.
-	Dalam pertandingan bola basket, kita akan merekam lokasi dan pergerakan baik pemain pada kedua tim maupun bola basket pada setiap saat pertandingan dan akan dianalisa untuk menentukan keefektifan dari sebuah serangan yang dilakukan.
-	
-	Untuk metode yang kami akan gunakan untuk menganalisa data lintasan tersebut adalah dengan menggunakan Statistically Discriminative Sub-Trajectory Mining (Stat-DSM) untuk melakukan penambangan data lintasan pemain dengan tujuan untuk menemukan pola pergerakan dalam bentuk sub-lintasan dan membedakan sub-lintasan tersebut kedalam dua kelompok berdasarkan karateristik-karateristik pergerakan sub-lintasan tersebut.
-	Untuk studi ini kita akan menganggap suatu sub-lintasan merupakan discriminatif bila sub-lintasan tersebut serupa dengan banyak sub-lintasan lainnya dalam suatu kelompok dan tidak serupa dengan (atau hanya serupa dengan sedikit) lintasan dalam kelompok lain.
-
-	Metode Stat-DSM telah terbukti dalam menemukan sub-lintasan yang secara statistik bersifat diskriminatory dalam data angin topan dan juga dalam data kendaraan di jalan.
-	Kita dapat secara naïve menggunakan metode Stat-DSM, dengan cara menggunakan metode tersebut dalam seluruh data lintasan setiap agen.
-	Tetapi dengan menggunakan metode ini, terdapat kemungkinan kita dapat kehilangan informasi spatio-temporal yang penting dalam interaksi antar agen dan juga daya komputasi dan waktu yang diperlukan untuk menganalisis data juga lebih besar.
-	Sehingga kita tidak dapat langsung menerapkan metode Stat-DSM untuk menganalisis pertandingan bola basket.
-	Oleh karena itu diperlukan kapabilitas untuk menganalisis berbagai lintasan dari berbagai agen (pemain dan bola) untuk dapat mempertimbangkan interaksi dan beberapa sub-lintasan terhadap sub-lintasan lainnya dalam satu waktu.
-	Hal ini tidak dapat dilakukan hanya dengan menggunakan metode Stat-DSM. 
-	Diperlukannya metode untuk menganalisa sub-lintasan secara kolektif dari beberapa entitas di saat yang bersamaan.
-	Sehingga untuk studi ini kami akan akan menggunakan pengembangan dari Stat-DSM yaitu Multi-Agent Statistically Discriminative Sub-Trajectory Mining (MA-Stat-DSM).
-	Dengan menganalisa pertandingan dengan metode ini, kami dapat menarik kesimpulan yang lebih dalam mengenai keefektifan pola pergerakan pemain dan interaksi antar pemain dibandingkan hanya menggunakan statistik konvensional.
-	
-	MA-Stat-DSM bertujuan untuk mengidentifikasi sub-matriks diskriminatif yang signifikan secara statistik yang dalam sub-matrix tersebut terdiri dari sub-lintasan dari beberapa agen. 
-	Untuk dapat mengidentifikasi diskriminatif yang signifikan secara statistik, diperlukannya suatu metrik untuk jarak.
-	Dalam Stat-DSM, digunakannya Euclidean distance, namun untuk MA-Stat-DSM akan menggunakan Hausdorff distance.
-	Alasannya adalah karena dalam pertandingan basket, setiap serangan yang dilakukan memiliki panjang waktu yang berbeda.
-
-	Hausdorff distance, dinamai dari Felix Hausdorff(1868-1942) merupakan sebuah metode untuk mencari jarak dengan menghitung jarak maksimum dari suatu himpunan ke titik terdekat di himpunan lainnya. 
-	Secara formal, Hausdorff distance dari himpunan A ke himpunan B adalah fungsi maksimin, yang didefinisikan sebagai
-	\begin{equation*}
-		h(A, B) = \max_{a \in A} \{ \min_{b \in B} \{ d(a, b) \} \}
-	\end{equation*}
-	dengan a dan b masing-masing merupakan titik dari himpunan A dan B, serta d(a, b) adalah metrik apa pun di antara titik-titik tersebut.
-
-	Untuk studi ini kami akan menganalisis pertandingan bola basket dengan melihat data lintasan dari 5 agen yaitu bola basket, dua pemain yang sedang menyerang dan dua pemain yang menjaga pemain yang menyerang tersebut.
-	Setiap matriks lintasan akan merepresentasikan pemain yang melakukan tembakan (atau jika tidak dilakukan tembakan maka pemain yang melakukan {\it turnover} yaitu saat bola dikuasai oleh tim penjaga), pemain yang melakukan pass terakhir, defender dari penembak (pemain terdekat saat tembakan dilakukan), dan defender dari passer terakhir.
-	% Alasan mengapa kami membatasi untuk hanya menganalisis kelima agen tersebut adalah karena jika kita menganalisis semua data lintasan mungking terlalu beragam untuk model dapat mengambil informasi yang berguna.
-	% Untuk mengapa kami menentukan peran dari kelima agen tersebut adalah untuk mengutamakan keterpahaman.
-	% Karena untuk menentukan peran pemain semakin sulit, semakin bertambahnya jumlah pemain, dan jika kita menggunakan jumlah pemain yang sedikit, maka kualitas analisis akan kurang memadai.
-	Setiap matriks lintasan juga akan diberi label untuk menentukan apakah permainan yang direpresentasikan dihitung efektif atau tidak.
-	Label matriks lintasan akan ditentukan berdasarkan beberapa faktor yaitu 
-	\begin{enumerate}
-		\item Posisi penembak di lapangan.
-		\item Jarak penembak dari defender terdekat.
-		\item Persentase keberhasilan tembakan penembak tersebut.
-	\end{enumerate}
-	Keputusan mengapa terdapat beberapa faktor yang mempengaruhi label dari matriks dibandingkan menentukan label hanya dengan melihat apakah serangan diakhiri dengan skor atau tidak adalah karena adanya perbedaan keahlian dalam menembak dan juga faktor-faktor stochastik lainnya yang menyebabkan evaluasi serangan berdasarkan perolehan skor mungkin tidak dapat memberikan gambaran serangan "sukses" yang lengkap.  
-	Walaupun dapat diargumentasikan bahwa semua aksi strategis tim yang dilakukan sebelumnya juga turut berkontribusi dalam keberhasilan serangan. 
-	Tetapi kami menentukan bahwa semua upaya tersebut hanya dapat menjadi poin hanya dengan keahlian yang dimiliki oleh satu pemain yaitu pemain yang menembak.
-	Sehingga kami menganggap adanya peluang mencetak angka yang baik adalah berdasarkan data historis mencetak poin dari pemain tersebut.
-
-	Lintasan $T_{i,k}$ pada matrix $i$ terdiri dari $m_i$ buah data lintasan dari agen $k$ yang dinotasikan dengan \[ T_{i,k} = \{(x_{1,k}, y_{1,k}), (x_{2,k}, y_{2,k}), \dots, (x_{m_i,k}, y_{m_i,k})\} \]
-	Matrik lintasan $i$ memuat semua lintasan dari $K$ agen dalam sebuah serangan, memiliki $m_i$ kolom dan dinotasikan sebagai $\bm{T}_{i,K}$.
-	Terdapat $N$ buah matriks lintasan dalam setiap pertandingan $M$.
-	Setiap matriks lintasan mengambil label $g_i = \{+1,-1\}$, dan $G_+ = \{\bm{T}_{i,K}\ |\ g_i = +1\}$ dan $G_- = \{\bm{T}_{i,K}\ |\ g_i = -1\}$.
-	Label tersebut menandakan apakah serangan yang direpresentasikan oleh matriks lintasan tersebut dianggap "efektif" atau "tidak efektif"
-
-	Sub-matriks lintasan dinotasikan dengan $\bm{T}_{i,K}^{(s,e)}$ merupakan sebuah urutan kolom dari matriks lintasan $\bm{T}_{i,K}$ yang dimulai dari kolom $s$ dan diakhiri dengan kolom $e$ dengan jumlah baris $|K|$ yang tetap.
-	Setiap sub-matriks $i$ memiliki panjang $|\bm{T}_{i,K}^{(s,e)}| \ge L$, dimana $L$ adalah parameter yang ditetapkan sebelumnya oleh pengguna yang menandakan panjang minimum (jumlah kolom minimum) dari sub-matriks lintasan.
-	Sub-matriks lintasan dinotasikan dengan $\bm{T}_{i,K}^{(s,e)} \sqsubseteq \bm{T}_{i,K}$ yang menandakan bahwa $\bm{T}_{i,K}^{(s,e)}$ merupakan sub-matriks lintasan dari $\bm{T}_{i,K}$.
-
-	------------------------------------------------
-	
-	Kita sebagai makhluk yang hidup pasti pernah bergerak.
+	Manusia sebagai makhluk hidup pasti pernah bergerak.
 	Sebagian besar hewan di dunia harus bergerak demi kelangsungan hidupnya, baik untuk melarikan diri dari bahaya maupun untuk mencari makan.
 	Manusia tidak ada bedanya, setiap manusia memiliki aspirasi, keinginan, dan tujuan dalam hidup kami, dan untuk dapat mencapai tujuan kita, kita harus bergerak menuju tujuan tersebut.
 	Setiap hari banyak orang di dunia bergerak untuk mencapai lokasi-lokasi dimana mereka dapat bekerja, belajar, berekreasi, dan lain-lain.
@@ -142,12 +74,11 @@
 	Dan tentunya kami tiba di era modern sekarang dimana perkembangan pada teknologi transportasi memperkenalkan kita kepada teknologi-teknologi seperti kereta cepat dan {\it electric vehicle} atau EVs.
 
 	\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.5\textwidth]{img/transportation.jpg}
-    \caption{Kendaraan buatan manusia}
-    \label{fig:man-madeTransportation}
+		\centering
+		\includegraphics[width=0.5\textwidth]{img/transportation.jpg}
+		\caption{Kendaraan buatan manusia}
+		\label{fig:man-madeTransportation}
 	\end{figure}
-
 	
 	Dapat dilihat dari sejarah manusia dan perkembangan teknologi kami bahwa manusia sangat berupaya untuk memaksimalkan efisiensi pergerakan. Oleh karena itu terdapat banyak ketertarikan dari berbagai orang untuk mempelajari pergerakan-pergerakan yang kita lakukan. 
 	Di zaman modern ini terutama, dikarenakan ketertarikan yang dimiliki banyak orang, perkembangan teknologi pelacakan juga bertumbuh dengan pesat. Dimulai dari saat tahun 1930s-1960s dimana pelacakan hanya dilakukan dengan observasi mata atau fotografi dari udara.
@@ -166,22 +97,22 @@
 	Semua cabang olahraga yang disebutkan tadi dan masih banyak cabang olahraga lainnya telah mengimplementasikan teknologi tersebut untuk membantu mengembangkan kualitas permainan dari cabang olahraga mereka masing-masing.
 	
 	\begin{figure}[htbp]
-	\centering
-    \begin{subfigure}[b]{0.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{img/trajectoryCollection.jpg}
-        \caption{Pengambilan data lintasan pada kendaraan}
-		\label{fig:trajectoryDataCollectionOnVehicle}
-    \end{subfigure}
-    \hfill 
-    \begin{subfigure}[b]{0.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{img/performanceAnalysisOnSoccer.jpg}
-        \caption{Analisis performa dalam olahraga sepak bola}
-		\label{fig:trajectoryAnalysisOnSoccer}
-    \end{subfigure}
-	\caption{Penggunaan data lintasan dalam kehidupan}
-    \label{fig:examplesOfTrajectoryInTheWorld}
+		\centering
+		\begin{subfigure}[b]{0.45\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{img/trajectoryCollection.jpg}
+			\caption{Pengambilan data lintasan pada kendaraan}
+			\label{fig:trajectoryDataCollectionOnVehicle}
+		\end{subfigure}
+		\hfill 
+		\begin{subfigure}[b]{0.45\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{img/performanceAnalysisOnSoccer.jpg}
+			\caption{Analisis performa dalam olahraga sepak bola}
+			\label{fig:trajectoryAnalysisOnSoccer}
+		\end{subfigure}
+		\caption{Penggunaan data lintasan dalam kehidupan}
+		\label{fig:examplesOfTrajectoryInTheWorld}
 	\end{figure}
 	
 	Selain untuk pelacakan, terdapat juga berbagai contoh lainnya untuk penggunaan data lintasan. 
@@ -190,6 +121,19 @@
 	Ataupun sebuah studi yang dilakukan dari Departemen Transportasi Maryland dengan judul Applications of Trajectory Data From the Perspective of a Road Transportation Agency: Literature Review and Maryland Case Study oleh Nikola Markovic yang menganalisis jutaan titik lintasan GPS untuk meningkatkan keefektifan rute yang diambil bus dan untuk membantu proses merencanakan lokasi pemeliharaan jalan.
 	
 	Hal yang sama juga sedang terjadi di bidang olahraga pada cabang bola basket. 
+	Bola basket merupakan sebuah permainan beregu yang dimainkan oleh dua kelompok masing-masing 5 orang dengan tujuan untuk mencetak poin lebih banyak dari lawan dengan melempar bola kedalam ring yang ditinggikan.
+	Permainan bola basket diciptakan pada Desember 1891 oleh Dr. James Naismith di Sekolah Pelatihan YMCA Springfield, Massachusetts, Amerika Serikat merupakan olahraga yang sekarang dimainkan di seluruh dunia oleh lebih dari 600 juta orang di seluruh dunia di lebih dari 200 negara.
+	Federasi Bola Basket Dunia (FIBA) didirikan pada tahun 1932 di Jenewa, Swiss berfungsi sebagai induk organisasi international yang berfungsi sebagai induk organisasi internasional yang mengatur, mengawasi, dan mengembangkan olahraga bola basket di seluruh dunia.
+	Saat ini, liga bola basket terbesar di dunia adalah National Basketball Association (NBA) yang dibuat pada 3 August, 1949.
+	NBA saat ini menampilkan sekitar 30 tim dan pemain-pemain terbaik dari seluruh dunia dan ditonton oleh jutaan orang di seluruh dunia.
+
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=0.5\textwidth]{img/nbaMatch.jpg}
+		\caption{Permainan NBA Miami Heats lawan Milwaukee Bucks}
+		\label{fig:nba}
+	\end{figure}
+
 	Pada sebelum tahun 2000, pengambilan data pada permainan bola basket hanya dapat dilakukan secara manual. 
 	Pengambilan data statistik masih dilakukan dengan pencatatan oleh seseorang dari pinggir lapangan dan analisis pertandingan masih dilakukan dengan menonton kembali kaset permainan yang kualitas rekaman masih kurang bagus.
 	Baru setelah tahun 2009 bahwa teknologi telah berkembang cukup untuk rekaman pertandingan dapat dilakukan dengan menggunakan peralatan optik seperti kamera yang menyediakan kualitas rekaman yang bagus.
@@ -202,6 +146,7 @@
 	Dalam sebuah lintasan, dapat dibagi lagi menjadi sub-linatasan yang merupakan bagian dari lintasan dalam rentan waktu tertentu yang merupakan bagian dari rentang waktu keseluruhan lintasan tersebut dan juga bersifat kontinu.
 	Karena keterbatasan teknologi, lintasan yang didapatkan tidak bisa benar-benar bersifat kontinu.
 	Hal ini dikarenakan teknologi yang digunakan seringkali hanya dapat mencatat lokasi entitas setiap interval waktu tertentu.
+	Lintasan juga dapat dibagi lagi menjadi sub-lintasan yang merupakan  bagian dari lintasan dalam rentan waktu tertentu yang merupakan bagian dari rentang waktu keseluruhan lintasan tersebut dan juga bersifat kontinu.
 
 	Data lintasan yang digunakan berupa spatio-temporal tracking data yang terdiri atas dua komponen utama.
 	Komponen yang pertama terdiri dari data spatio yaitu data lokasi sebuah atau beberapa entitas dalam bidang dua atau tiga dimensi dan untuk komponen kedua merupakan data temporal yaitu data waktu dimana entitas tersebut berada di suatu lokasi.
@@ -212,9 +157,58 @@
 	SportVU merupakan sebuah sistem kamera yang tujuan utamanya adalah untuk mengikuti bola dan pemain-pemainnya pada lapangan.
 	SportVU menyediakan statistik seperti posisi pemain dan bola secara waktu nyata melalui perangkat lunak dan algoritma statistik.
 
-	Seiring dengan perkembangan teknologi pengambilan pergerakan, dibuat juga berbagai metode untuk memproses data-data yang dikumpulkan.
-	
+	Seiring dengan perkembangan teknologi pengambilan data lintasan seperti penggunaan SportVU, dibuat juga berbagai metode untuk memproses data-data yang dikumpulkan.
+	Salah satu contoh penggunaan dari data lintasan dari SportVU tersebut untuk dianalisis oleh komputer untuk dibandingkan dengan permainan-permainan lainnya untuk menentukan apakah sebauh serangan dapat dianggap efektif atau tidak.
+	Dengan ini, permainan bola basket dapat semakin dalam dimengerti untuk perkembangan pemain dan juga pelatih-pelatih dalam merancang startegi serangan untuk tim mereka.
+	Hasil analisis yang didapatkan dari komputer dapat kemudian dianalisis lagi lebih lanjut oleh pelatih-pelatih tim basket untuk kemudian mereka dapat merancang pelatihan atau strategi baru untuk tim mereka.
+	Hasil analisis juga bisa juga dipakai oleh tim musuh untuk melihat serangan mana yang terlihat efektif dan bisa antara merancang pertahanan terhadap strategi tersebut atau dapat merancang startegi serangan berdasarkan analisis tersebut.
 
+	Salah satu penelitian yang menggunakan SportVU dalam cabang bola basket adalah studi {\it Multi-agent statistical discriminative sub-trajectory mining and an application to NBA basketball} oleh Bunker et al.(2023). 
+	Pada studi tersebut, Rory Bunker menggunakan dataset SportVU dari tahun 2015 dan 2016 untuk dianalisis.
+	Studi tersebut menggunakan sebuah metode dengan nama Multi Agent Statistically Discriminative Sub-Trajectory Mining (MA-Stat-DSM) untuk membandingkan sebuah serangan terhadap serangan-serangan lainnya dan menentukan keefektifan serangan tersebut.
+
+	Sebelum membicarakan MA-Stat-DSM, kita harus pertama membicarakan mengenai apa itu metode Statistically Discriminative Sub-Trajectory Mining (Stat-DSM).
+	Stat-DSM merupakan metode untuk menganalisis data lintasan spatio temporal dengan tujuan untuk menemukan pola-pola dari pergerakan suatu entitas.
+	Stat-DSM menganalisis sub-lintasan dari sebuah lintasan entitas dan melihat apakah pola-pola pergerakan dalam sub-lintasan.
+	Sub-lintasan tersebut kemudian ditempatkan ke dalam salah satu kelompok berdasarkan karateristik-karateristik pergerakannya.
+	Sub-lintasan akan dianggap sebagai diskriminatif hanya bila sub-lintasan tersebut serupa dengan banyak sub-lintasan lainnya dalam suatu kelompok dan tidak serupa dengan (atau hanya serupa dengan sedikit) lintasan dalam kelompok lain.	
+
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=0.5\textwidth]{img/StatDSMTrajectory.jpeg}
+		\caption{Data lintasan pada angin topan}
+		\label{fig:trajectoryOnHurricane}
+	\end{figure}
+
+	Metode Stat-DSM sudah dipakai dalam menganalisis data lintasan dari berbagai entitas seperti angin topan atau kendaraan di jalan.
+	Namun, untuk bidang dimana terdapat banyak entitas seperti dalam permainan olahraga beregu, metode ini tidak dapat diimplementasi semudah itu.
+	Kita dapat secara naïve menggunakan metode Stat-DSM, dengan cara menggunakan metode tersebut dalam seluruh data lintasan setiap agen.
+	Tetapi dengan menggunakan metode ini, terdapat kemungkinan kita dapat kehilangan informasi spatio-temporal yang penting dalam interaksi antar agen dan juga daya komputasi dan waktu yang diperlukan untuk menganalisis data juga lebih besar.
+	Oleh karena itu diperlukannya metode lain yang memiliki kapabilitas untuk menganalisis data lintasan dari berbagai agen (pemain dan bola) dan untuk dapat mempertimbangkan interaksi dari beberapa sub-lintasan terhadap sub-lintasan lainnya dalam waktu yang bersamaan.
+	Diperlukannya metode untuk menganalisa sub-lintasan secara kolektif dari beberapa entitas di saat yang bersamaan.
+	Oleh karena itu, dibuatnya metode lain yaitu metode Multi-Agent Statistically Discriminative Sub-Trajectory Mining, yaitu metode pengembangan dari Stat-DSM.
+	Dengan menggunakan metode ini, pertandingan basket akan dapat dianalisis dengan lebih dalam dan interaksi antar sub-lintasan antar agen juga dapat lebih dalam dipelajari.
+	Menggunakan metode MA-Stat-DSM, kesimpulan yang didapatkan akan dalam dibandingkan dengan menggunakan analisis statistik konvensional.
+
+	Multi-Agent Statistically Discriminative Sub-Trajectory Mining (MA-Stat-DSM) adalah sebuah metode yang dibuat dengan tujuan untuk dapat mengidentifikasi sub-matriks diskriminatif yang secara statistik bersifat signifikan.
+	Di dalam sub-matrix tersebut adalah sub-lintasan dari agen-agen yang ditentukan.
+	Metode Stat-DSM bekerja dengan cara menganalisis vektor-vektor yang isinya merupakan kumpulan informasi lokasi yang diurut berdasarkan waktu yang saat digabungkan membentuk sebuah sub-lintasan.
+	MA-Stat-DSM bertujuan untuk menganalisis sub-matriks yang isi dari matriks merupakan vektor-vektor dari beberapa agen yang isi vektor tersebut sama dengan isi vektor pada metode Stat-DSM.
+
+	Pada MA-Stat-DSM, lintasan $T_{i,k}$ pada matrix $i$ terdiri dari $m_i$ buah data lintasan dari agen $k$ yang dinotasikan dengan \[ T_{i,k} = \{(x_{1,k}, y_{1,k}), (x_{2,k}, y_{2,k}), \dots, (x_{m_i,k}, y_{m_i,k})\} \]
+	Matrik lintasan $i$ memuat semua lintasan dari $K$ agen dalam sebuah serangan, memiliki $m_i$ kolom dan dinotasikan sebagai $\bm{T}_{i,K}$.
+	Terdapat $N$ buah matriks lintasan dalam setiap pertandingan $M$.
+	Setiap matriks lintasan mengambil label $g_i = \{+1,-1\}$, dan $G_+ = \{\bm{T}_{i,K}\ |\ g_i = +1\}$ dan $G_- = \{\bm{T}_{i,K}\ |\ g_i = -1\}$.
+	Label tersebut menandakan apakah serangan yang direpresentasikan oleh matriks lintasan tersebut dianggap "efektif" atau "tidak efektif"
+
+	Sub-matriks lintasan dinotasikan dengan $\bm{T}_{i,K}^{(s,e)}$ merupakan sebuah urutan kolom dari matriks lintasan $\bm{T}_{i,K}$ yang dimulai dari kolom $s$ dan diakhiri dengan kolom $e$ dengan jumlah baris $|K|$ yang tetap.
+	Setiap sub-matriks $i$ memiliki panjang $|\bm{T}_{i,K}^{(s,e)}| \ge L$, dimana $L$ adalah parameter yang ditetapkan sebelumnya oleh pengguna yang menandakan panjang minimum (jumlah kolom minimum) dari sub-matriks lintasan.
+	Sub-matriks lintasan dinotasikan dengan $\bm{T}_{i,K}^{(s,e)} \sqsubseteq \bm{T}_{i,K}$ yang menandakan bahwa $\bm{T}_{i,K}^{(s,e)}$ merupakan sub-matriks lintasan dari $\bm{T}_{i,K}$.
+
+	Untuk pengerjaan tugas akhir ini akan digunakannya juga metode MA-Stat-DSM buatan Bunket et al. untuk menganalisis pertandingan bola basket. 
+	Metode tersebut akan digunakan untuk menganalisis data permainan dari berbagai pertandinga dari dataset-dataset lain.
+	Tidak juga ditutup kemungkinannya untuk dilakukannya penyesuaian-penyesuaian terhadap algoritma MA-Stat-DSM.
+	Pengeluaran dari algoritma akan berupa statistik yang kemudian akan dapat dianalisis lanjut oleh orang untuk menarik kesimpulan mereka sendiri. 
 
 	\section{Rumusan Masalah}
 	% Tuliskan rumusan dari masalah yang akan anda bahas pada tugas akhir ini. Rumusan masalah biasanya berupa kalimat pertanyaan. Gunakan penomoran untuk menuliskan rumusan masalah ini.

@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1789623332.60786 "c:/Unpar/TA/TA1/TugasAkhir/doc/RencanaKerja/document.tex" "document.pdf" "document" 1789623334.06751 0
+["pdflatex"] 1789716319.79919 "c:/Unpar/TA/TA1/TugasAkhir/doc/RencanaKerja/document.tex" "document.pdf" "document" 1789716321.17178 0
   "C:/Users/Vince Farrel. N/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1789608756 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/Vince Farrel. N/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecbx1440.pk" 1788961907 40136 b107594545c0e53137de0d3105762368 ""
   "C:/Users/Vince Farrel. N/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecoc1000.pk" 1788961916 32528 7c09157641901dacbe42139bb6bdbf65 ""
@@ -83,9 +83,11 @@
   "C:/Users/Vince Farrel. N/AppData/Local/Programs/MiKTeX/tex/latex/preprint/fullpage.sty" 1369148873 2867 05b418f78b224ec872f5b11081138605 ""
   "C:/Users/Vince Farrel. N/AppData/Local/Programs/MiKTeX/tex/latex/setspace/setspace.sty" 1670403145 22490 8cac309b79a4c53a4ffce4b1b07aead0 ""
   "C:/Users/Vince Farrel. N/AppData/Local/Programs/MiKTeX/tex/latex/tools/bm.sty" 1780057721 13389 5947b32308246a5315379e60aa5a3346 ""
-  "c:/Unpar/TA/TA1/TugasAkhir/doc/RencanaKerja/document.tex" 1789623331 28800 0d6c54035c9346d7bedcb474a80dedcc ""
-  "document.aux" 1789623333 1536 1b7b9c764fc50b2d08beb35ddf5e03bd "pdflatex"
-  "document.tex" 1789623331 28800 0d6c54035c9346d7bedcb474a80dedcc ""
+  "c:/Unpar/TA/TA1/TugasAkhir/doc/RencanaKerja/document.tex" 1789716318 27769 24f3a165c995756567c9867c69abc436 ""
+  "document.aux" 1789716320 1919 5dfdaeb1f5f23eb5a49ee5a4be0a10dd "pdflatex"
+  "document.tex" 1789716318 27769 24f3a165c995756567c9867c69abc436 ""
+  "img/StatDSMTrajectory.jpeg" 1789655092 406537 ab986c1c786397ea6b33229981810601 ""
+  "img/nbaMatch.jpg" 1789714981 50115 de493657472fa6f57b1da7bfd4b02061 ""
   "img/performanceAnalysisOnSoccer.jpg" 1789608219 42302 af288787794a2887cc5db7d7cd199835 ""
   "img/trajectoryCollection.jpg" 1789608010 9336 0c90dfcd15c9cf69cf0898e1ecc1e175 ""
   "img/transportation.jpg" 1789605840 560355 1b90e2c6ef40c1aad18e431059f68e77 ""
