@@ -62,7 +62,7 @@
 	
 	Manusia sebagai makhluk hidup pasti pernah bergerak.
 	Sebagian besar hewan di dunia harus bergerak demi kelangsungan hidupnya, baik untuk melarikan diri dari bahaya maupun untuk mencari makan.
-	Manusia tidak ada bedanya, setiap manusia memiliki aspirasi, keinginan, dan tujuan dalam hidup kami, dan untuk dapat mencapai tujuan kita, kita harus bergerak menuju tujuan tersebut.
+	Manusia tidak ada bedanya, setiap manusia memiliki aspirasi, keinginan, dan tujuan dalam hidup setiap orang, dan untuk manusia dapat mencapai tujuannya, setiap orang harus bergerak menuju tujuan tersebut.
 	Setiap hari banyak orang di dunia bergerak untuk mencapai lokasi-lokasi dimana mereka dapat bekerja, belajar, berekreasi, dan lain-lain.
 	
 	Karena pergerakan merupakan aspek yang sangat penting dalam kehidupan manusia, sepanjang sejarah, orang-orang telah menciptakan berbagai inovasi agar dapat berpindah tempat dengan lebih efisien.
@@ -71,7 +71,7 @@
 	Lalu juga pada tahun 1886 saat Carl Benz membuat mobil bermesin bensin pertama dan Henry Ford, yang mengotomatisasi perakitan mobil sehingga menjadikannya terjangkau dan lebih mudah diakses.
 	Bahkan perkembangan tidak berhenti dalam daratan.
 	Pada tahun 1903 sepasang saudara Wilbur dan Orville atau yang lebih dikenalnya atas nama Wright brothers berhasil menaklukan langit untuk pertama kalinya yang membuat yang membantu orang dapat menempuh jarak yang sangat jauh dengan cepat.
-	Dan tentunya kami tiba di era modern sekarang dimana perkembangan pada teknologi transportasi memperkenalkan kita kepada teknologi-teknologi seperti kereta cepat dan {\it electric vehicle} atau EVs.
+	Dan tentunya sekarang, di era modern dimana perkembangan pada teknologi transportasi memperkenalkan teknologi-teknologi seperti kereta cepat dan {\it electric vehicle} atau EVs.
 
 	\begin{figure}[htbp]
 		\centering
@@ -80,7 +80,7 @@
 		\label{fig:man-madeTransportation}
 	\end{figure}
 	
-	Dapat dilihat dari sejarah manusia dan perkembangan teknologi kami bahwa manusia sangat berupaya untuk memaksimalkan efisiensi pergerakan. Oleh karena itu terdapat banyak ketertarikan dari berbagai orang untuk mempelajari pergerakan-pergerakan yang kita lakukan. 
+	Dapat dilihat dari sejarah manusia dan perkembangan teknologi dari zaman dahulu bahwa manusia sangat berupaya untuk memaksimalkan efisiensi pergerakan. Oleh karena itu terdapat banyak ketertarikan dari berbagai orang untuk mempelajari pergerakan-pergerakan yang manusia lakukan. 
 	Di zaman modern ini terutama, dikarenakan ketertarikan yang dimiliki banyak orang, perkembangan teknologi pelacakan juga bertumbuh dengan pesat. Dimulai dari saat tahun 1930s-1960s dimana pelacakan hanya dilakukan dengan observasi mata atau fotografi dari udara.
 	Dilanjuti ke tahun 1990s-2000s dimana mulai muncul teknologi {\it Global Positioning System} (GPS) yang memudahkan pengambilan dan mengumpulkan data untuk dianalisis.
 	Sekarang, di era modern kini, muncul berbagai teknologi baru seperti {\it computer vision} yang mampu mencatat data pergerakan dengan lebih mudah.
@@ -143,15 +143,21 @@
 	Dan di era digital sekarang dimana terdapat banyak metode analisis baru yang dibuat untuk menganalisis data tersebut.
 
 	{\it Trajectory} atau lintasan merupakan sebuah jalur yang kontinu yang dilalui oleh suatu entitas yang bergerak dari satu titik ke titik yang lain dalam suatu rentang waktu.
-	Dalam sebuah lintasan, dapat dibagi lagi menjadi sub-linatasan yang merupakan bagian dari lintasan dalam rentan waktu tertentu yang merupakan bagian dari rentang waktu keseluruhan lintasan tersebut dan juga bersifat kontinu.
+	Dalam sebuah lintasan, dapat dibagi lagi menjadi sub-lintasan yang merupakan bagian dari lintasan dalam rentan waktu tertentu yang merupakan bagian dari rentang waktu keseluruhan lintasan tersebut dan juga bersifat kontinu.
 	Karena keterbatasan teknologi, lintasan yang didapatkan tidak bisa benar-benar bersifat kontinu.
 	Hal ini dikarenakan teknologi yang digunakan seringkali hanya dapat mencatat lokasi entitas setiap interval waktu tertentu.
-	Lintasan juga dapat dibagi lagi menjadi sub-lintasan yang merupakan  bagian dari lintasan dalam rentan waktu tertentu yang merupakan bagian dari rentang waktu keseluruhan lintasan tersebut dan juga bersifat kontinu.
 
 	Data lintasan yang digunakan berupa spatio-temporal tracking data yang terdiri atas dua komponen utama.
 	Komponen yang pertama terdiri dari data spatio yaitu data lokasi sebuah atau beberapa entitas dalam bidang dua atau tiga dimensi dan untuk komponen kedua merupakan data temporal yaitu data waktu dimana entitas tersebut berada di suatu lokasi.
 	Kedua komponen tersebut saat disatukan membentuk data yang dapat menjelaskan dimana suatu entitas berada pada suatu waktu tertentu.
 	Dengan jumlah yang banyak dan dengan waktu yang kontinu, dapat digabung dan menjadi data lintasan entitas tersebut yang memperlihatkan pergerakan entitas tersebut.
+
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=0.5\textwidth]{img/trajectoryExplanation.png}
+		\caption{Perbedaan pergerakan pada dunia nyata (Real world) yang bersifat kontinu dengan data pelacakan (Tracking data) yang dicatat hanya pada waktu tertentu sehingga membentuk rangkaian titik yang disebut pelacakan dan data pergerakan (Movement data) yang direpresentasikan dengan kumpulan langkah-langkah dari satu lokasi ke lokasi lain yang membentuk suatu lintasan}
+		\label{fig:trajectoryExplanation}
+	\end{figure}
 
 	Salah satu dataset untuk data lintasan pertandingan basket yang banyak digunakan adalah dataset yang disediakan oleh SportVU.
 	SportVU merupakan sebuah sistem kamera yang tujuan utamanya adalah untuk mengikuti bola dan pemain-pemainnya pada lapangan.
@@ -166,9 +172,29 @@
 	Salah satu penelitian yang menggunakan SportVU dalam cabang bola basket adalah studi {\it Multi-agent statistical discriminative sub-trajectory mining and an application to NBA basketball} oleh Bunker et al.(2023). 
 	Pada studi tersebut, Rory Bunker menggunakan dataset SportVU dari tahun 2015 dan 2016 untuk dianalisis.
 	Studi tersebut menggunakan sebuah metode dengan nama Multi Agent Statistically Discriminative Sub-Trajectory Mining (MA-Stat-DSM) untuk membandingkan sebuah serangan terhadap serangan-serangan lainnya dan menentukan keefektifan serangan tersebut.
+	Salah satu hasil yang didapat dari analisis adalah pada salah satu serangan yang dilakukan oleh Golden State Warriors melawan Los Angeles Lakers pada 5 Januari 2016, model berhasil mengidentifikasi serangan yang effisien yang menunjukan pergerakan shooter yang lebih cepat dibandingkan defender yang menghasilkan shooter dapat bergerak ke tepi setengah lingkaran dan menerima bola dan melakukan tembakan kosong.
 
-	Sebelum membicarakan MA-Stat-DSM, kita harus pertama membicarakan mengenai apa itu metode Statistically Discriminative Sub-Trajectory Mining (Stat-DSM).
-	Stat-DSM merupakan metode untuk menganalisis data lintasan spatio temporal dengan tujuan untuk menemukan pola-pola dari pergerakan suatu entitas.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\textwidth]{img/GSWvLakers.jpeg}
+		\caption{Grafik serangan efektif dari Golden State Warriors melawan LA Lakers}
+		\label{fig:GSWvLakersGraph}
+	\end{figure}
+
+	Untuk dataset yang digunakan, dataset SportVU berisi dengan informasi pertandingan antara dua tim dan juga berisi informasi pemain pada kedua tim.
+	Informasi pemain pada SportVU mencakup informasi tim yang ditampilkan melalui ID tim, jenis tim (tuan rumah atau tamu), nama tim, dan singkatan nama tim serta informasi pemain yang ditampilkan melalui ID pemain, nama depan dan belakang pemain, nomor punggung, dan posisi bermain (G - Guard, F - Forward, C - Center).
+	Informasi permainan tersedia dalam bentuk data pelacakan yang dibagi berdasarkan waktu, di mana setiap satuan waktu kemudian dirinci lagi untuk setiap pemain. Setiap pengukuran memuat informasi mengenai {\it event ID}, nomor babak, {\it timestamp}, waktu permainan ({\it game clock} dan {\it shot clock}), {\it team ID} dan {\it player ID}, serta lokasi pemain dalam koordinat xyz. 
+	Terdapat pula pengukuran untuk bola, yang ditandai dengan nilai -1 pada {\it team ID} dan {\it player ID}.
+
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=1\textwidth]{img/SportVUData.jpeg}
+		\caption{Data yang didapatkan dari dataset SportVU}
+		\label{fig:sportvudata}
+	\end{figure}
+
+	Sebelum membicarakan MA-Stat-DSM, pertama harus dibicarakan mengenai apa itu metode Statistically Discriminative Sub-Trajectory Mining (Stat-DSM).
+	Stat-DSM merupakan metode untuk menganalisis data lintasan spatio-temporal dengan tujuan untuk menemukan pola-pola dari pergerakan suatu entitas.
 	Stat-DSM menganalisis sub-lintasan dari sebuah lintasan entitas dan melihat apakah pola-pola pergerakan dalam sub-lintasan.
 	Sub-lintasan tersebut kemudian ditempatkan ke dalam salah satu kelompok berdasarkan karateristik-karateristik pergerakannya.
 	Sub-lintasan akan dianggap sebagai diskriminatif hanya bila sub-lintasan tersebut serupa dengan banyak sub-lintasan lainnya dalam suatu kelompok dan tidak serupa dengan (atau hanya serupa dengan sedikit) lintasan dalam kelompok lain.	
@@ -182,8 +208,9 @@
 
 	Metode Stat-DSM sudah dipakai dalam menganalisis data lintasan dari berbagai entitas seperti angin topan atau kendaraan di jalan.
 	Namun, untuk bidang dimana terdapat banyak entitas seperti dalam permainan olahraga beregu, metode ini tidak dapat diimplementasi semudah itu.
-	Kita dapat secara naïve menggunakan metode Stat-DSM, dengan cara menggunakan metode tersebut dalam seluruh data lintasan setiap agen.
-	Tetapi dengan menggunakan metode ini, terdapat kemungkinan kita dapat kehilangan informasi spatio-temporal yang penting dalam interaksi antar agen dan juga daya komputasi dan waktu yang diperlukan untuk menganalisis data juga lebih besar.
+	Dapat secara naif digunakannya metode Stat-DSM, dengan cara menggunakan metode tersebut dalam seluruh data lintasan setiap agen.
+	Tetapi dengan menggunakan metode ini, terdapat kemungkinan akan adanya kehilangan informasi spatio-temporal yang penting dalam interaksi antar agen dan juga daya komputasi dan waktu yang diperlukan untuk menganalisis data juga lebih besar.
+	
 	Oleh karena itu diperlukannya metode lain yang memiliki kapabilitas untuk menganalisis data lintasan dari berbagai agen (pemain dan bola) dan untuk dapat mempertimbangkan interaksi dari beberapa sub-lintasan terhadap sub-lintasan lainnya dalam waktu yang bersamaan.
 	Diperlukannya metode untuk menganalisa sub-lintasan secara kolektif dari beberapa entitas di saat yang bersamaan.
 	Oleh karena itu, dibuatnya metode lain yaitu metode Multi-Agent Statistically Discriminative Sub-Trajectory Mining, yaitu metode pengembangan dari Stat-DSM.
@@ -193,23 +220,25 @@
 	Multi-Agent Statistically Discriminative Sub-Trajectory Mining (MA-Stat-DSM) adalah sebuah metode yang dibuat dengan tujuan untuk dapat mengidentifikasi sub-matriks diskriminatif yang secara statistik bersifat signifikan.
 	Di dalam sub-matrix tersebut adalah sub-lintasan dari agen-agen yang ditentukan.
 	Metode Stat-DSM bekerja dengan cara menganalisis vektor-vektor yang isinya merupakan kumpulan informasi lokasi yang diurut berdasarkan waktu yang saat digabungkan membentuk sebuah sub-lintasan.
-	MA-Stat-DSM bertujuan untuk  sama dengan isi vektor pada metode Stat-DSM.
 	Perkembangan dari Stat-DSM dan MA-Stat-DSM berada di analisis yang dilakukan dimana Stat-DSM menganalisis vektor yang berisi data lintasan sebuah entitas, MA-Stat-DSM menganalisis sub-matriks yang isi dari matriks merupakan vektor-vektor dengan isi data lintasan dari beberapa agen.
 
-	Pada MA-Stat-DSM, lintasan $T_{i,k}$ pada matrix $i$ terdiri dari $m_i$ buah data lintasan dari agen $k$ yang dinotasikan dengan \[ T_{i,k} = \{(x_{1,k}, y_{1,k}), (x_{2,k}, y_{2,k}), \dots, (x_{m_i,k}, y_{m_i,k})\} \]
-	Matrik lintasan $i$ memuat semua lintasan dari $K$ agen dalam sebuah serangan, memiliki $m_i$ kolom dan dinotasikan sebagai $\bm{T}_{i,K}$.
-	Terdapat $N$ buah matriks lintasan dalam setiap pertandingan $M$.
-	Setiap matriks lintasan mengambil label $g_i = \{+1,-1\}$, dan $G_+ = \{\bm{T}_{i,K}\ |\ g_i = +1\}$ dan $G_- = \{\bm{T}_{i,K}\ |\ g_i = -1\}$.
-	Label tersebut menandakan apakah serangan yang direpresentasikan oleh matriks lintasan tersebut dianggap "efektif" atau "tidak efektif"
+	% Pada MA-Stat-DSM, lintasan $T_{i,k}$ pada matrix $i$ terdiri dari $m_i$ buah data lintasan dari agen $k$ yang dinotasikan dengan \[ T_{i,k} = \{(x_{1,k}, y_{1,k}), (x_{2,k}, y_{2,k}), \dots, (x_{m_i,k}, y_{m_i,k})\} \]
+	% Matrik lintasan $i$ memuat semua lintasan dari $K$ agen dalam sebuah serangan, memiliki $m_i$ kolom dan dinotasikan sebagai $\bm{T}_{i,K}$.
+	% Terdapat $N$ buah matriks lintasan dalam setiap pertandingan $M$.
+	% Setiap matriks lintasan mengambil label $g_i = \{+1,-1\}$, dan $G_+ = \{\bm{T}_{i,K}\ |\ g_i = +1\}$ dan $G_- = \{\bm{T}_{i,K}\ |\ g_i = -1\}$.
+	% Label tersebut menandakan apakah serangan yang direpresentasikan oleh matriks lintasan tersebut dianggap "efektif" atau "tidak efektif"
 
-	Sub-matriks lintasan dinotasikan dengan $\bm{T}_{i,K}^{(s,e)}$ merupakan sebuah urutan kolom dari matriks lintasan $\bm{T}_{i,K}$ yang dimulai dari kolom $s$ dan diakhiri dengan kolom $e$ dengan jumlah baris $|K|$ yang tetap.
-	Setiap sub-matriks $i$ memiliki panjang $|\bm{T}_{i,K}^{(s,e)}| \ge L$, dimana $L$ adalah parameter yang ditetapkan sebelumnya oleh pengguna yang menandakan panjang minimum (jumlah kolom minimum) dari sub-matriks lintasan.
-	Sub-matriks lintasan dinotasikan dengan $\bm{T}_{i,K}^{(s,e)} \sqsubseteq \bm{T}_{i,K}$ yang menandakan bahwa $\bm{T}_{i,K}^{(s,e)}$ merupakan sub-matriks lintasan dari $\bm{T}_{i,K}$.
+	% Sub-matriks lintasan dinotasikan dengan $\bm{T}_{i,K}^{(s,e)}$ merupakan sebuah urutan kolom dari matriks lintasan $\bm{T}_{i,K}$ yang dimulai dari kolom $s$ dan diakhiri dengan kolom $e$ dengan jumlah baris $|K|$ yang tetap.
+	% Setiap sub-matriks $i$ memiliki panjang $|\bm{T}_{i,K}^{(s,e)}| \ge L$, dimana $L$ adalah parameter yang ditetapkan sebelumnya oleh pengguna yang menandakan panjang minimum (jumlah kolom minimum) dari sub-matriks lintasan.
+	% Sub-matriks lintasan dinotasikan dengan $\bm{T}_{i,K}^{(s,e)} \sqsubseteq \bm{T}_{i,K}$ yang menandakan bahwa $\bm{T}_{i,K}^{(s,e)}$ merupakan sub-matriks lintasan dari $\bm{T}_{i,K}$.
 
-	Untuk pengerjaan tugas akhir ini akan digunakannya juga metode MA-Stat-DSM buatan Bunket et al. untuk menganalisis pertandingan bola basket. 
-	Metode tersebut akan digunakan untuk menganalisis data permainan dari berbagai pertandinga dari dataset-dataset lain.
+	Untuk pengerjaan tugas akhir ini akan digunakannya juga metode MA-Stat-DSM buatan Bunker et al. untuk menganalisis pertandingan bola basket. 
+	Metode tersebut akan digunakan untuk menganalisis data permainan dari berbagai pertandingan dari berbagai dataset-dataset lain.
 	Tidak juga ditutup kemungkinannya untuk dilakukannya penyesuaian-penyesuaian terhadap algoritma MA-Stat-DSM.
-	Pengeluaran dari algoritma akan berupa statistik yang kemudian akan dapat dianalisis lanjut oleh orang untuk menarik kesimpulan mereka sendiri. 
+	Perangkat lunak akan menerima {\it input} berupa data lintasan beberapa agen dari dataset-dataset yang disediakan.
+	Data lintasan akan berupa kumpulan koordinat yang diurut secara waktu untuk membentuk lintasan.
+	Pengeluaran dari perangkat lunak akan berupa statistik yang isinya adalah matriks sub-lintasan yang merepresentasikan suatu serangan dengan label yang mendandakan apakah matriks tersebut diskriminative yang signifikan secara statistik atau tidak yang kemudian akan dapat dianalisis lanjut oleh orang untuk menarik kesimpulan mereka sendiri. 
+	Perangkat lunak akan dibuat dengan bahasa python menggunakan berbagai library sesuai kebutuhan.
 
 	\section{Rumusan Masalah}
 	% Tuliskan rumusan dari masalah yang akan anda bahas pada tugas akhir ini. Rumusan masalah biasanya berupa kalimat pertanyaan. Gunakan penomoran untuk menuliskan rumusan masalah ini.
@@ -273,32 +302,36 @@
 	% \end{enumerate}
 
 	\begin{enumerate}
-		\item Melakukan studi literatur mengenai lintasan dan bagaimana cara untuk menganalisanya.
+		\item Mempelajari secara mendalam mengenai konsep Machine Learning, Deep Learning, dan Data Mining.
+		\item Melakukan studi literatur mengenai lintasan serta dataset yang digunakan dan bagaimana cara untuk menganalisanya.
 		\item Mempelajari dan menguasai metode MA-Stat-DSM serta memahami konsep-konsep lainnya yang berhubungan.
-		\item Mempelajari bahasa pemrograman pilihan dan {\it library} yang hendak digunakan. 
+		\item Mempelajari bahasa pemrograman python dan {\it library} yang hendak digunakan. 
 		\item Merancang startegi pra-pemrosesan untuk data yang digunakan.
 		\item Menganalisa dan memodelkan data lintasan pemain dan fitur-fitur lainnya yang bersifat diskriminatif yang dapat memberikan informasi mengenai pergerakan kedua tim dan entitas lainnya yang berhubungan.
-		\item Implementasi metode MA-Stat-DSM dengan menggunakan bahasa pemrograman pilihan.
-		\item (maybe) Membuat dasbor untuk menampilkan hasil keluaran model.
-		\item Melakukan pengujian dan eksperimen dengan dataset yang tersedia untuk menilai kinerja model.
-		\item (maybe) Mempersiapkan dokumentasi program yang lengkap.
+		\item Implementasi metode MA-Stat-DSM dengan menggunakan bahasa pemrograman python.
+		\item Melakukan pengujian dengan dataset yang tersedia untuk menilai kinerja model.
+		\item Mempersiapkan dokumentasi program yang lengkap.
 		\item Mempersiapkan dokumen tugas akhir. 
 	\end{enumerate}
 	
 	\section{Rencana Kerja}
 	Rincian capaian yang direncanakan di Tugas Akhir 1 adalah sebagai berikut:
 	\begin{enumerate}
-		\item Melakukan studi literatur secara mendalam mengenai konsep Machine Learning dan Data Mining
-		\item Mempelajari penggunaan bahasa pemrograman pilihan
-		\item Mempelajari dan memahami library yang hendak digunakan
-		\item Menyusun dokumen laporan Tugas Akhir 1
+		\item Melakukan studi literatur secara mendalam mengenai konsep Machine Learning, Deep Learning, dan Data Mining.
+		\item Melakukan studi literatur mengenai lintasan dan data set yang digunakan.
+		\item Mempelajari penggunaan bahasa python.
+		\item Mempelajari dan memahami library yang hendak digunakan.
+		\item Menyusun dokumen laporan Tugas Akhir 1.
 	\end{enumerate}
 	
 	Sedangkan yang akan diselesaikan di Tugas Akhir 2 adalah sebagai berikut:
 	\begin{enumerate}
-		\item
-		\item
-		\item Menyusun dokumen laporan Tugas Akhir 2
+		\item Merancang strategi pra-pemrosesan untuk datase yang digunakan.
+		\item Menganalisa dan memodelkan dataset dan menentukan fitur-fitur yang dianalisa.
+		\item Implementasi metode MA-Stat-DSM.
+		\item Melakukan pengujian model.
+		\item Mempersiapkan dokumentasi dari perangkat lunak.
+		\item Menyusun dokumen laporan Tugas Akhir 2.
 	\end{enumerate}
 	
 	\vspace{1cm}
@@ -321,6 +354,6 @@
 		\vspace{0.5cm}
 	}{
 		% \centering Bandung, \makebox[0.5cm]{\hrulefill}/\makebox[0.5cm]{\hrulefill}/2013\\
-		\vspace{2cm} Nama: \pembimbing\makebox[3cm]{\hrulefill}\\ Pembimbing Tunggal
+		\vspace{2cm} Nama: \pembimbing\\\ Pembimbing Tunggal
 	}
 \end{document}
