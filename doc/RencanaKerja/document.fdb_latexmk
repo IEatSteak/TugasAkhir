@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1790072113.5275 "c:/Unpar/TA/TA1/TugasAkhir/doc/RencanaKerja/document.tex" "document.pdf" "document" 1790072116.71827 0
+["pdflatex"] 1790081815.25964 "c:/Unpar/TA/TA1/TugasAkhir/doc/RencanaKerja/document.tex" "document.pdf" "document" 1790081816.91841 0
   "C:/Users/Vince Farrel. N/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1789608756 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/Vince Farrel. N/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecbx1440.pk" 1788961907 40136 b107594545c0e53137de0d3105762368 ""
   "C:/Users/Vince Farrel. N/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecoc1000.pk" 1788961916 32528 7c09157641901dacbe42139bb6bdbf65 ""
@@ -65,12 +65,13 @@
   "C:/Users/Vince Farrel. N/AppData/Local/Programs/MiKTeX/tex/latex/preprint/fullpage.sty" 1369148873 2867 05b418f78b224ec872f5b11081138605 ""
   "C:/Users/Vince Farrel. N/AppData/Local/Programs/MiKTeX/tex/latex/setspace/setspace.sty" 1670403145 22490 8cac309b79a4c53a4ffce4b1b07aead0 ""
   "C:/Users/Vince Farrel. N/AppData/Local/Programs/MiKTeX/tex/latex/tools/bm.sty" 1780057721 13389 5947b32308246a5315379e60aa5a3346 ""
-  "c:/Unpar/TA/TA1/TugasAkhir/doc/RencanaKerja/document.tex" 1790072111 31039 ba75c59e6e90d0b1a83e8c02e747f12a ""
-  "document.aux" 1790072115 2858 5d5fc6c081dbc0f4ad13116c0ad4fd1f "pdflatex"
-  "document.tex" 1790072111 31039 ba75c59e6e90d0b1a83e8c02e747f12a ""
+  "c:/Unpar/TA/TA1/TugasAkhir/doc/RencanaKerja/document.tex" 1790081814 31164 53ffe12f86832a47907661a818691ec9 ""
+  "document.aux" 1790081816 2952 3e851e5a32afd85bebde4467d90d2fd3 "pdflatex"
+  "document.tex" 1790081814 31164 53ffe12f86832a47907661a818691ec9 ""
   "img/GSWvLakers.jpeg" 1789903410 62593 94f276508e87e86c5d09422ca42db5da ""
   "img/SportVUData.jpeg" 1789900363 163870 12dadbc966e8b5f57cebb586e1f3371d ""
   "img/StatDSMTrajectory.jpeg" 1789655092 406537 ab986c1c786397ea6b33229981810601 ""
+  "img/TTDVinceF.jpeg" 1790081269 40652 c9cd55d0cbcb94241328f9ae33d2568d ""
   "img/nbaMatch.jpg" 1789714981 50115 de493657472fa6f57b1da7bfd4b02061 ""
   "img/performanceAnalysisOnSoccer.jpg" 1789608219 42302 af288787794a2887cc5db7d7cd199835 ""
   "img/trajectoryCollection.jpg" 1789608010 9336 0c90dfcd15c9cf69cf0898e1ecc1e175 ""
