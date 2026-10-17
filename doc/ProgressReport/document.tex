@@ -9,6 +9,8 @@
 \usepackage{etoolbox}
 \usepackage{setspace} 
 \usepackage{lipsum} 
+\usepackage{amsmath}
+\usepackage{booktabs}
 \setlength{\headsep}{30pt}
 \usepackage[inner=2cm,outer=2.5cm,top=2.5cm,bottom=2cm]{geometry} %margin
 % \pagestyle{empty}
@@ -19,24 +21,24 @@
 \markright{\textbf{\textsc{Laporan Perkembangan Pengerjaan Skripsi\textemdash Sem. Genap 2015/2016}}}
 
 \onehalfspacing
- 
+
 \begin{document}
 
 \title{\@judultopik}
 \author{\nama \textendash \@npm} 
 
 %ISILAH DATA BERIKUT INI:
-\newcommand{\nama}{Lionov}
-\newcommand{\@npm}{1997730020}
+\newcommand{\nama}{Vince Farrel Natanael}
+\newcommand{\@npm}{6182301024}
 \newcommand{\tanggal}{01/01/1900} %Tanggal pembuatan dokumen
-\newcommand{\@judultopik}{Simulasi Kerumunan di Museum} % Judul/topik anda
-\newcommand{\kodetopik}{TAB0901}
-\newcommand{\jumpemb}{2} % Jumlah pembimbing, 1 atau 2
-\newcommand{\pembA}{Thomas Anung Basuki}
+\newcommand{\@judultopik}{Penerapan MA-Stat-DSM pada Pertandingan Basket} % Judul/topik anda
+\newcommand{\kodetopik}{LNV6105}
+\newcommand{\jumpemb}{1} % Jumlah pembimbing, 1 atau 2
+\newcommand{\pembA}{Lionov, Ph.D.}
 \newcommand{\pembB}{-}
-\newcommand{\semesterPertama}{40 - Genap 15/16} % semester pertama kali topik diambil, angka 1 dimulai dari sem Ganjil 96/97
+\newcommand{\semesterPertama}{61 - Ganjil 26/27} % semester pertama kali topik diambil, angka 1 dimulai dari sem Ganjil 96/97
 \newcommand{\lamaSkripsi}{1} % Jumlah semester untuk mengerjakan skripsi s.d. dokumen ini dibuat
-\newcommand{\kulPertama}{Skripsi 1} % Kuliah dimana topik ini diambil pertama kali
+\newcommand{\kulPertama}{Tugas Akhir 1} % Kuliah dimana topik ini diambil pertama kali
 \newcommand{\tipePR}{B} % tipe progress report :
 % A : dokumen pendukung untuk pengambilan ke-2 di Skripsi 1
 % B : dokumen untuk reviewer pada presentasi dan review Skripsi 1
@@ -57,14 +59,152 @@ Pengambilan pertama kali topik ini pada : Semester {\bf \semesterPertama} \\
 Pengambilan pertama kali topik ini di kuliah : {\bf \kulPertama} \\
 Tipe Laporan : {\bf \tipePR} -
 \ifdefstring{\tipePR}{A}{
-			Dokumen pendukung untuk {\BF pengambilan ke-2 di Skripsi 1} }
-		{
-		\ifdefstring{\tipePR}{B} {
-				Dokumen untuk reviewer pada presentasi dan {\bf review Skripsi 1}}
-			{	Dokumen pendukung untuk {\bf pengambilan ke-2 di Skripsi 2}}
-		}
-		
+Dokumen pendukung untuk {\BF pengambilan ke-2 di Skripsi 1} }
+{
+\ifdefstring{\tipePR}{B} {
+Dokumen untuk reviewer pada presentasi dan {\bf review Skripsi 1}}
+{	Dokumen pendukung untuk {\bf pengambilan ke-2 di Skripsi 2}}
+}
+
 \section{Latar Belakang}
+Stat-DSM merupakan sebuah metode untuk memisahkan dua kelas lintasan dimana setiap sub-lintasan pada setiap kelas memiliki perbedaan yang cukup sehingga dapat dinyatakan bahwa perbedaan tersebut merupakan signifikan secara statistik dan tidak terjadi hanyak karena acak.
+Dalam stat-DSM, anggap terdapat $N = 1000$ lintasan.
+Setiap lintasan memiliki kelas atau label $Y_i\in\{0,1\}$ dimana $Y_i = 1$ menandakan sukses dan $Y_i = 0$ menandakan tidak sukses.
+Setiap lintasan $T_i$ terdiri dari beberapa titik-titik lokasi yang dinotasikan dengan $T_i = (p_i^1,p_i^2,...,p_i^n)$ dimana setiap $p_i^t = (x_i^t,y_i^t)$ yang merupakan koordinat x dan y.
+
+Sub-lintasan merupakan sebuah bagian kecil dari sebuah lintasan yang bersifat kontinuous.
+Anggap kita memiliki sebuah lintasan $T_i = (p_i^1,p_i^2,p_i^3,p_i^4,p_i^5,p_i^6,p_i^7,p_i^8)$, sebuah sub-lintasan dapat berupa $S_i = (p_i^3,p_i^4,p_i^5,p_i^6,p_i^7)$
+
+Stat-DSM melakukan analisis terhadapa sub-lintasan, alih-alih melakuka analisis terhadap seluruh lintasan karena sebagian besar dari sebuah lintasan diisi dengan informasi yang tidak relevan.
+Sehingga apa yang algoritma tersebut ingin analisis hanya bagian-bagian yang dianggap penting saja.
+
+Pada intinya, algoritma Stat-DSM ingin menanyakan dua hal yaitu
+\begin{enumerate}
+	\item Apakah lintasan $T_i$ mengandung pola-pola sub-lintasan yang cukup mirip dengan $S$?
+	\item Apakah pola sub-lintasan $S$ tersebut secara statistikal terjadi secara berbeda di antara kedua kelas tersebut? 
+\end{enumerate}
+Kedua permasalahan tersebut seputar dua hal berbeda, yang pertama merupakan permasalahan mengenai geometri dan yang kedua mengenai statistik.
+
+Untuk permasalahan yang pertama, Stat-DSM perlu dapat mencari kemiripan antar lintasan secara geometri.
+Stat-DSM akan mencari pola-pola pergerakan dalam sebuah lintasan yang sama dengan melihat titik-titik pada sebuah lintasan.
+Tetapi tidak dapat sebatas dilakukannya perbandingan dan melihat apakah sama atau tidak karena setiap titik demi titik tidak akan identikal.
+Oleh karen itu diperlukannya sebuah fungsi jarak untuk menyatakan seberapa mirip titik-titik kedua lintasan untuk dianggap sebagai sama.
+Fungsi jarak tersebut secara umum dinotasikan dengan $d(S,T) \leq \epsilon$ dimana $d$ = fungsi jarak dan $\epsilon$ = similarity threshold.
+Anggap terdapat sebuah kandidat sub-lintasan $S$, untuk setiap lintasan akan dilihat
+\begin{equation}
+	X_i(S) = \begin{cases} 
+		1 & \text{jika } S \text{ ditemukan dalam } T_i \\ 
+		0 & \text{selainnya} 
+	\end{cases}
+\end{equation}
+sehingga kita akan memiliki contoh dataset 
+\begin{table}[h]
+	\centering
+	\begin{tabular}{l|c|r}
+		\toprule
+		\textbf{Lintasan} & \textbf{Label} & \textbf{Memiliki $S$} \\
+		\midrule
+		T1 & Positif & 1 \\
+		T2 & Positif & 1 \\
+		T3 & Positif & 0 \\
+		T4 & Positif & 1 \\
+		T5 & Negatif & 0 \\
+		T6 & Negatif & 0 \\
+		T7 & Negatif & 1 \\
+		T8 & Negatif & 0 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+Sekarang disisakan dengan $X_i\in\{0,1\}$ dan $Y_i\in\{0,1\}$ dimana dapat digunakan untuk menyelesaikan permasalah kedua.
+
+Dengan adanya tabek tersebut, permasalah kedua dapat mulai diselesaikan dengan menjawab apakah pola sub-lintasan $S$ yang muncul dalam berbagai lintasan terjadi berdasarkan label yang ada.
+Dengan ini dinyatakannya null hipotesis $H_0: X \perp Y$ yang bermakna bahwa pola kemunculan sub-lintasan $S$ dalam sebuah lintasan bersifat independen dengan label kelas lintasan tersebut
+dan $H_1: X \not\perp Y$ yang bermakna bahwa pola kemunculan sub-lintasan $S$ dalam sebuah lintasan dan label kelas sebuah lintasan memiliki hubungan.
+
+Selanjutnya diperlukannya dibentuk sebuah \textit{contingency table}.
+Anggap kita menemukan untuk label kelas positif 80 mengandung $S$ dan 20 tidak dan untuk label kelas negatif 30 mengandung $S$ dan 70 tidak.
+Sehingga didapatkannya 
+\begin{table}[ht]
+	\centering
+	\caption{A 2$\times$2 Contingency Table}
+	\label{tab:contingency_example}
+	\begin{tabular}{rccc}
+		\toprule
+		& \multicolumn{2}{c}{\textbf{Mengandung}} & \\
+		\cmidrule(lr){2-3}
+		\textbf{Kelas} & $S$ & $\neg S$ & \textbf{Total} \\
+		\midrule
+		Positif & 80 & 20 & 100 \\
+		Negatif & 30 & 70 & 100 \\
+		\midrule
+		\textbf{Total} & 110 & 90 & 200 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+Setelah didapatnya \textit{contingency table} tersebut, Stat-DSM menggunakan \textit{Fisher's Exact Test} untuk melihat hubungan antara adanya $S$ dengan label kelas.
+untuk tabel 
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{rccc}
+		\textbf{Label} & $S$ & $\neg S$ \\
+		\midrule
+		Positif & a & b \\
+		Negatif & c & d \\
+	\end{tabular}
+\end{table}
+
+Probabilitas untuk memperoleh tabel yang diamati di bawah hipotesis nol didasarkan pada distribusi hipergeometrik atau kemungkinan mendapatkan data tersebut (atau yang lebih ekstrem) murni karena kebetulan adalah \[ P = \frac{\binom{a+b}{a}\binom{c+d}{c}}{\binom{a+b+c+d}{a+c}} \]
+dan hasil dari persamaan tersebut adalah $p$-value
+
+Apa yang pengertian dari $p$-value?
+Anggap terdapat $p$ = 0.003, maka jika hipotesis null adalah \textit{true}, maka kemungkinan mendapatkannya hasil yang sama atau lebih extrem memiliki kemungkinan 0.3\%.
+Sehingga jika $p$-value kecil memberikan bukti untuk dapat menolak hipotesis $H_0$ yang pada kasus ini berarti bahwa label kelas dan kemunculan $S$ dalam sebuah lintasan memiliki hubungan dan tidak muncul hanya karena peluang.
+
+Tetapi perhitungan ini hanya berlaku untuk klasifikasi statistikal yang dilakukan sekali saja.
+Anggap terdapat 100,000 kandidat sub-lintasan, maka akan dilakukannya 100,000 \textit{Fisher tests}.
+Saat dilakukannya banyak tes, maka kemungkinan ditemukannya hasil yang sama juga akan naik karena kemungkinannya berubah dari menemukan sebuah hasil yang sama menjadi kemungkinan minimal satu hasil yang sama ditemukan.
+Masalah ini sebagai \textit{Family-Wise Error Rate} yang dapat dihitung sebagai $FWER = 1-(1-\alpha)^m$.
+Contohnya adalah dengan $\alpha = 0.05$ dengan melakukan 20 tes, maka kemungkinan adanya kemunculan naik menjadi 64\%
+Inilah mengapa dibutuhkannya sebuah metode untuk mengkoreksi jika dilakukannya beberapa tes.
+Untuk Stat-DSM, digunakannya metode yang didasarkan dengan \textit{Westfall-Young Permutation}.
+
+Bagaimana metode \textit{Westfall-Young Permutation} bekerja?
+Pertama metode tersebut melakukan permutasi terhadap dataset yang ada.
+Anggap terdapat 
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{l|c|r}
+		\toprule
+		\textbf{Lintasan} & \textbf{Pola} & \textbf{Label} \\
+		\midrule
+		T1 & 1 & Positif \\
+		T2 & 1 & Positif \\
+		T3 & 0 & Negatif \\
+		T4 & 0 & Negatif \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+Permutasi akan dilakukan terhadap label tersebut, sehingga algoritma akan mengubah tabel tersebut menjadi
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{l|c|r}
+		\toprule
+		\textbf{Lintasan} & \textbf{Pola} & \textbf{Label} \\
+		\midrule
+		T1 & 1 & Negatif \\
+		T2 & 1 & Positif \\
+		T3 & 0 & Positif \\
+		T4 & 0 & Negatif \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+Dengan melakukan ini, relasi antara $X$ dengan $Y$ dapat diubah tanpa mengubah struktur data sehingga korelasi antar data masih di preservasi.
+Setelah label diacak, akan dihitung lagi $p$-value dari berbagai permutasi yang dilakukan.
+
 
 \section{Rumusan Masalah}
 
@@ -73,56 +213,56 @@ Tipe Laporan : {\bf \tipePR} -
 
 \section{Detail Perkembangan Pengerjaan Skripsi}
 Detail bagian pekerjaan skripsi sesuai dengan rencan kerja/laporan perkembangan terkahir :
-	\begin{enumerate}
-		\item \textbf{Melakukan survei ke Museum Geologi Bandung untuk mendapatkan denah serta mengetahui perilaku pengunjung museum secara umum (arah perjalanan, kecepatan, lama melihat objek, dll).}\\
-		{\bf Status :} Ada sejak rencana kerja skripsi.\\
-		{\bf Hasil :} Survei sudah dilakukan sebanyak 3x pada tanggal X, Y dan Z. Pada kunjungan pertama, diperhaitkan denah museum dan dibuat sketsa berdasarkan pengamatan. Pada kunjunga kedua, bertemu dengan bagian humas museum dan berhasil mendapatkan denah serta melakukan wawancara. Hasil wawancara sudah dibuat dan ada softcopy-nya. Pada kunjungan ketiga, secara khusus dilihat perilaku pengunjung. Masih direncakanan 2x kunjungan lagi. Bukti-bukti kunjungan dapat dilihat di lampiran
-		
-		\item \textbf{Melakukan analisis pada hasil survei terhadap pergerakan pengunjung di museum dan membuat rancangan denah di komputer yang dilengkapi dengan penghalang dan objek di museum.}\\
-		{\bf Status :} Ada sejak rencana kerja skripsi.\\
-		{\bf Hasil :}
-
-		\item \textbf{Melakukan studi literatur mengenai sifat kolektif suatu kerumunan, teknik {\it social force model} dan teknik {\it flow tiles}}\\
-		{\bf Status :} Ada sejak rencana kerja skripsi.\\
-		{\bf Hasil :}
-
-		\item \textbf{Mempelajari bahasa pemrograman C++ dan cara menggunakan framework OpenSteer}\\
-		{\bf Status :} Ada sejak rencana kerja skripsi.\\
-		{\bf Hasil :}
-
-		\item \textbf{Merancang pergerakan kerumunan di dalam museum menggunakan teknik {\it social force model} dan {\it flow tiles} serta menggunakan teknik lainnya seperti konsep pathway dan waypoints. Selain itu, dirancang pula adanya waktu tunggu (pada saat pengunjung melihat objek di museum) dan cara pembuatan jalur bagi setiap individu pengunjung}\\
-		{\bf Status :} Ada sejak rencana kerja skripsi.\\
-		{\bf Hasil :}
-
-		\item \textbf{Melakukan analisa dan merancang struktur data yang cocok untuk menyimpan penghalang (obstacle)}\\
-		{\bf Status :} dihapuskan/tidak dikerjakan \\
-		{\bf Hasil :} berdasarkan analisis singkat, tidak dilakukan analisis lebih jauh karena tidak diperlukan struktur data baru, karena sudah disediakan oleh OpenSteer versi terbaru
-
-		\item \textbf{Mengimplementasikan keseluruhan algoritma dan struktur data yang dirancang, dengan menggunakan framework OpenSteer} \\
-		{\bf Status :} Ada sejak rencana kerja skripsi.\\
-		{\bf Hasil :}
-
-		\item \textbf{Melakukan pengujian (dan eksperimen) yang melibatkan responde untuk menilai hasil simulasi secara kualitatif}\\
-		{\bf Status :} Ada sejak rencana kerja skripsi.\\
-		{\bf Hasil :}
-
-		\item \textbf{Menulis dokumen skripsi}\\
-		{\bf Status :} Ada sejak rencana kerja skripsi.\\
-		{\bf Hasil :} \lipsum[1]
-		
-		\item \textbf{Mempelajari cara menggunakan fitur manipulasi obstacle yang disediakan oleh framework Opensteer versi terbaru}\\
-		{\bf Status :} baru ditambahkan pada semester ini\\
-		{\bf Hasil :} baru direncanakan karena framework Opensteer versi paling akhir baru selesai diinstall dan dilihat-lihat bagian contoh-contoh simulasinya
-		
-
-	\end{enumerate}
+\begin{enumerate}
+	\item \textbf{Melakukan survei ke Museum Geologi Bandung untuk mendapatkan denah serta mengetahui perilaku pengunjung museum secara umum (arah perjalanan, kecepatan, lama melihat objek, dll).}\\
+	{\bf Status :} Ada sejak rencana kerja skripsi.\\
+	{\bf Hasil :} Survei sudah dilakukan sebanyak 3x pada tanggal X, Y dan Z. Pada kunjungan pertama, diperhaitkan denah museum dan dibuat sketsa berdasarkan pengamatan. Pada kunjunga kedua, bertemu dengan bagian humas museum dan berhasil mendapatkan denah serta melakukan wawancara. Hasil wawancara sudah dibuat dan ada softcopy-nya. Pada kunjungan ketiga, secara khusus dilihat perilaku pengunjung. Masih direncakanan 2x kunjungan lagi. Bukti-bukti kunjungan dapat dilihat di lampiran
+	
+	\item \textbf{Melakukan analisis pada hasil survei terhadap pergerakan pengunjung di museum dan membuat rancangan denah di komputer yang dilengkapi dengan penghalang dan objek di museum.}\\
+	{\bf Status :} Ada sejak rencana kerja skripsi.\\
+	{\bf Hasil :}
+	
+	\item \textbf{Melakukan studi literatur mengenai sifat kolektif suatu kerumunan, teknik {\it social force model} dan teknik {\it flow tiles}}\\
+	{\bf Status :} Ada sejak rencana kerja skripsi.\\
+	{\bf Hasil :}
+	
+	\item \textbf{Mempelajari bahasa pemrograman C++ dan cara menggunakan framework OpenSteer}\\
+	{\bf Status :} Ada sejak rencana kerja skripsi.\\
+	{\bf Hasil :}
+	
+	\item \textbf{Merancang pergerakan kerumunan di dalam museum menggunakan teknik {\it social force model} dan {\it flow tiles} serta menggunakan teknik lainnya seperti konsep pathway dan waypoints. Selain itu, dirancang pula adanya waktu tunggu (pada saat pengunjung melihat objek di museum) dan cara pembuatan jalur bagi setiap individu pengunjung}\\
+	{\bf Status :} Ada sejak rencana kerja skripsi.\\
+	{\bf Hasil :}
+	
+	\item \textbf{Melakukan analisa dan merancang struktur data yang cocok untuk menyimpan penghalang (obstacle)}\\
+	{\bf Status :} dihapuskan/tidak dikerjakan \\
+	{\bf Hasil :} berdasarkan analisis singkat, tidak dilakukan analisis lebih jauh karena tidak diperlukan struktur data baru, karena sudah disediakan oleh OpenSteer versi terbaru
+	
+	\item \textbf{Mengimplementasikan keseluruhan algoritma dan struktur data yang dirancang, dengan menggunakan framework OpenSteer} \\
+	{\bf Status :} Ada sejak rencana kerja skripsi.\\
+	{\bf Hasil :}
+	
+	\item \textbf{Melakukan pengujian (dan eksperimen) yang melibatkan responde untuk menilai hasil simulasi secara kualitatif}\\
+	{\bf Status :} Ada sejak rencana kerja skripsi.\\
+	{\bf Hasil :}
+	
+	\item \textbf{Menulis dokumen skripsi}\\
+	{\bf Status :} Ada sejak rencana kerja skripsi.\\
+	{\bf Hasil :} \lipsum[1]
+	
+	\item \textbf{Mempelajari cara menggunakan fitur manipulasi obstacle yang disediakan oleh framework Opensteer versi terbaru}\\
+	{\bf Status :} baru ditambahkan pada semester ini\\
+	{\bf Hasil :} baru direncanakan karena framework Opensteer versi paling akhir baru selesai diinstall dan dilihat-lihat bagian contoh-contoh simulasinya
+	
+	
+\end{enumerate}
 
 \section{Pencapaian Rencana Kerja}
 Langkah-langkah kerja yang berhasil diselesaikan dalam Skripsi 1 ini adalah sebagai berikut:
 \begin{enumerate}
-\item
-\item
-\item
+	\item
+	\item
+	\item
 \end{enumerate}
 
 
@@ -147,12 +287,12 @@ Menyetujui, \\
 \vspace{1.5cm}
 \begin{centering} Menyetujui,\\ \end{centering} \vspace{0.75cm}
 \begin{minipage}[b]{0.45\linewidth}
-% \centering Bandung, \makebox[0.5cm]{\hrulefill}/\makebox[0.5cm]{\hrulefill}/2013 \\
-\vspace{2cm} Nama: \pembA \\ Pembimbing Utama
+	% \centering Bandung, \makebox[0.5cm]{\hrulefill}/\makebox[0.5cm]{\hrulefill}/2013 \\
+	\vspace{2cm} Nama: \pembA \\ Pembimbing Utama
 \end{minipage} \hspace{0.5cm}
 \begin{minipage}[b]{0.45\linewidth}
-% \centering Bandung, \makebox[0.5cm]{\hrulefill}/\makebox[0.5cm]{\hrulefill}/2013\\
-\vspace{2cm} Nama: \pembB \\ Pembimbing Pendamping
+	% \centering Bandung, \makebox[0.5cm]{\hrulefill}/\makebox[0.5cm]{\hrulefill}/2013\\
+	\vspace{2cm} Nama: \pembB \\ Pembimbing Pendamping
 \end{minipage}
 \vspace{0.5cm}
 }{
