@@ -11,6 +11,8 @@
 \usepackage{lipsum} 
 \usepackage{amsmath}
 \usepackage{booktabs}
+\usepackage{forest}
+\usepackage{longdivision}
 \setlength{\headsep}{30pt}
 \usepackage[inner=2cm,outer=2.5cm,top=2.5cm,bottom=2cm]{geometry} %margin
 % \pagestyle{empty}
@@ -118,7 +120,7 @@ sehingga kita akan memiliki contoh dataset
 
 Sekarang disisakan dengan $X_i\in\{0,1\}$ dan $Y_i\in\{0,1\}$ dimana dapat digunakan untuk menyelesaikan permasalah kedua.
 
-Dengan adanya tabek tersebut, permasalah kedua dapat mulai diselesaikan dengan menjawab apakah pola sub-lintasan $S$ yang muncul dalam berbagai lintasan terjadi berdasarkan label yang ada.
+Dengan adanya tabel tersebut, permasalah kedua dapat mulai diselesaikan dengan menjawab apakah pola sub-lintasan $S$ yang muncul dalam berbagai lintasan terjadi berdasarkan label yang ada.
 Dengan ini dinyatakannya null hipotesis $H_0: X \perp Y$ yang bermakna bahwa pola kemunculan sub-lintasan $S$ dalam sebuah lintasan bersifat independen dengan label kelas lintasan tersebut
 dan $H_1: X \not\perp Y$ yang bermakna bahwa pola kemunculan sub-lintasan $S$ dalam sebuah lintasan dan label kelas sebuah lintasan memiliki hubungan.
 
@@ -204,7 +206,205 @@ Permutasi akan dilakukan terhadap label tersebut, sehingga algoritma akan mengub
 
 Dengan melakukan ini, relasi antara $X$ dengan $Y$ dapat diubah tanpa mengubah struktur data sehingga korelasi antar data masih di preservasi.
 Setelah label diacak, akan dihitung lagi $p$-value dari berbagai permutasi yang dilakukan.
+Setelah beberapa permutasi, kita akan mendapatkan beberapa $p$-value dengan nilai yang berbeda-beda. 
+Pada setiap permutasi, akan diambil hasil $p$-value terkecil.
 
+Salah satu hasil buruk dari menggunakan metode ini adalah seberapa besarnya ruang pencariannya.
+Oleh karena itu dibutuhkannya digunakannya beberapa metode untuk membuat program lebih effisien.
+Salah satu metodenya adalah \textit{minimum trajectory length} ($l_min$) yang bekerja untuk membatasi seberapa kecil panjang sub-lintasan yang dapat diproses.
+Contohnya adalah jika $l_min = 5$, maka sub-lintasan yang akan diproses hanya akan memiliki panjang 5 atau lebih.
+
+Salah satu metode lainnya adalah dengan menggunakan sebuah \textit{candidate tree}.
+Candidate tree merupakan pohon yang menampung list sub-lintasan, dimana pada pohon tersebut, kandidat dengan panjang yang lebih besar memiliki relasi dengan kandidat yang lebih kecil.
+Contoh \textit{candidate tree}
+\begin{figure}[h]
+	\centering
+	\begin{forest}
+		[Candidate 1
+			[Candidate A
+				[A1]
+				[A2]
+				[A3]
+			]
+			[Candidate B
+				[B1]
+				[B2]
+			]
+			[Candidate C
+				[C1]
+			]
+		]
+	\end{forest}
+	\caption{Contoh \textit{Candidate Tree}}
+\end{figure}
+
+Lalu setelah kita memiliki \textit{Candidate tree}, kami dapat mengimplementasikan sebuah pruning startegy dimana jika kita dapat mengetahui sebuah branch tidak dapat menghasilkan sebuah pola yang diskriminan secara statistik, kami dapat prune branch tersebut.
+
+Secara menyeluruh, cara kerja stat-DSM adalah dengan
+\begin{enumerate}
+	\item Generate kandidat sub-lintasan $S$
+	\item Mencari dataset untuk lintasan-lintasan yang memiliki segmen dengan jarak yang mirip dengan $S$ dinotasikan dengan $d(S,T_i)\leq\epsilon$
+	\item Lalu representasi setiap lintasan dengan $X_i(S)\in\{0,1\}$
+	\item Gabungkan $X_i$ yang baru dibuat dengan label kelas $Y_i$
+	\item Buatlah \textit{contingency table}
+	\item Lakukannya \textit{Fisher's Exact Test} untuk mendapatkan $p$-value
+	\item Lakukan \textit{Westfall-Young Permutation Correction} untuk mendapatkan \textit{significant threshold} yang dikoreksi
+	\item Tentukan apakah branch perlu di explore lagi, jika ya ulangi, jika tidak prune
+\end{enumerate}
+
+Contoh tes kasus untuk pengerjaan Stat-DSM :
+
+Parameter :
+\begin{enumerate}
+	\item $n = 10$
+	\item $n_+ = 5$, $n_- = 5$
+	\item $min_l = 2$
+	\item $\epsilon = 0$
+	\item $\alpha = 0.05$
+\end{enumerate}
+
+Data :
+\begin{tabular} {l|c|r}
+	\textbf{Lintasan} & \textbf{Label $Y_i$} & \textbf{Alur Koordinat} \\
+	\toprule
+	$T_1$ & $1$ & $(0,0)\rightarrow(1,0)\rightarrow(2,0)\rightarrow(3,0)$ \\
+	$T_2$ & $1$ & $(0,0)\rightarrow(1,0)\rightarrow(2,0)\rightarrow(3,0)$ \\
+	$T_3$ & $1$ & $(0,0)\rightarrow(1,0)\rightarrow(2,0)\rightarrow(3,0)$ \\
+	$T_4$ & $1$ & $(0,0)\rightarrow(1,0)\rightarrow(2,0)\rightarrow(3,1)$ \\
+	$T_5$ & $1$ & $(0,0)\rightarrow(1,0)\rightarrow(2,1)\rightarrow(3,1)$ \\
+	$T_6$ & $0$ & $(0,5)\rightarrow(1,5)\rightarrow(2,5)\rightarrow(3,5)$ \\
+	$T_7$ & $0$ & $(0,10)\rightarrow(1,10)\rightarrow(2,10)\rightarrow(3,10)$ \\
+	$T_8$ & $0$ & $(0,15)\rightarrow(1,15)\rightarrow(2,15)\rightarrow(3,15)$ \\
+	$T_9$ & $0$ & $(0,20)\rightarrow(1,20)\rightarrow(2,20)\rightarrow(3,20)$ \\
+	$T_{10}$ &$0$ & $(0,25)\rightarrow(1,25)\rightarrow(2,25)\rightarrow(3,25)$ \\
+\end{tabular}
+
+\begin{enumerate}
+	\item \textbf{Generate kandidat sub-lintasan $S$} \\
+	Pertama harus mengambil sub-lintasan dari data set yang panjang sub-lintasan tidak kurang dari $min_l = 2$ \\
+	Contoh : \\ $S_a = [(0,0),(1,0)]$ \\ $S_b = [(0,0),(1,0),(2,0)]$ \\ $S_c = [(0,0),(1,0),(2,0),(3,0)]$
+	\item \textbf{Mencari lintasan yang memenuhi $d(S,T_i) \leq \epsilon$} \\
+	Untuk setiap kandidat yang ditemukan, algoritma kemudian akan mencari lintasan yang memiliki segmen sub-lintasan yang sesuai dengan kandidat tersebut. Pada tes kasus ini, ditetapkan $\epsilon = 0$ yang berarti bahwa agar dinyatakan dua segmen sebagai mirip, jaraknya harus $\leq 0$. \\
+	Contoh : \\
+	\begin{tabular}{l|c|r}
+		\textbf{Kandidat} & \textbf{Lintasan yang cocok} & \textbf{Support} \\
+		\midrule
+		$S_a = [(0,0),(1,0)]$ & $T_1,T_2,T_3,T_4,T_5$ & 5 \\
+		$S_b = [(1,0),(2,0)]$ & $T_1,T_2,T_3,T_4$ & 4 \\
+		$S_c = [(1,0),(2,1)]$ & $T_5$ & 1 \\
+		$S_d = [(0,0),(1,0),(2,0)]$ & $T_1,T_2,T_3,T_4$ & 4 \\
+		$S_e = [(0,0),(1,0),(2,1)]$ & $T_5$ & 1 \\
+		$S_f = [(0,0),(1,0),(2,0),(3,0)]$ & $T_1,T_2,T_3$ & 3 \\
+	\end{tabular}
+	\item \textbf{Merepresentasikan setiap lintasan dengan $X_i(S) \in \{0,1\}$} \\
+	Representasikan dengan 
+	\begin{equation}
+		X_i(S) = \begin{cases} 
+			1 & d(S,T_i) \leq \epsilon \\ 
+			0 & d(S,T_i) \ge \epsilon
+		\end{cases}
+	\end{equation} 
+	Sehingga \\ $X(S_a) = (1,1,1,1,1,0,0,0,0,0)$ \\ $X(S_b) = (1,1,1,1,0,0,0,0,0,0)$ \\ $X(S_c) = (1,1,1,0,0,0,0,0,0,0)$ \\
+	\item \textbf{Menggabungkan $X_i(S)$ dengan label kelas $Y_i$} \\
+	Jadi untuk lintasan $X(S_a)$ didapat \\
+	\begin{tabular}{l|c|r}
+		\textbf{Lintasan} & \textbf{Label $Y_i$} & \textbf{Contain $S_a$?} \\
+		\midrule
+		$T_1$ & $1$ & $1$ \\
+		$T_2$ & $1$ & $1$ \\
+		$T_3$ & $1$ & $1$ \\
+		$T_4$ & $1$ & $1$ \\
+		$T_5$ & $1$ & $1$ \\
+		$T_6$ & $0$ & $0$ \\
+		$T_7$ & $0$ & $0$ \\
+		$T_8$ & $0$ & $0$ \\
+		$T_9$ & $0$ & $0$ \\
+		$T_{10}$ & $0$ & $0$ \\
+	\end{tabular}
+	\item \textbf{Membentuk contingency table} \\
+	\begin{table}[ht]
+		\centering
+		\caption{A 2$\times$2 Contingency Table of $X(S_a)$}
+		\label{tab:contingency_testCase}
+		\begin{tabular}{rccc}
+			\toprule
+			& \multicolumn{2}{c}{\textbf{Mengandung}} & \\
+			\cmidrule(lr){2-3}
+			\textbf{Kelas} & $S_a$ & $\neg S_a$ & \textbf{Total} \\
+			\midrule
+			$Y = 1$ & 5 & 0 & 5 \\
+			$Y = 0$ & 0 & 5 & 5 \\
+			\midrule
+			\textbf{Total} & 5 & 5 & 10 \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+	\item \textbf{Melakukan Fisher's Exact Test untuk mendapatkan $p$-value} \\
+	Fisher's Exact Test disini digunakan untuk menguji hubungan antara keberadaan kandidat sub-lintasan dan label kelas. \\
+	Untuk kasus $S_a$, $p$-value dapat dihitung dengan pertama mencari  \[ P_upper = \frac{\binom{5}{5}\binom{5}{0}}{\binom{10}{5}} = \frac{1}{252} \] \\
+	Maka untuk uji sua sisi, untuk mendapatkan peluang kedua sisi, perlu diperhatikan juga peluang $P_lower$ dengan \[ \begin{aligned} p(S_A) &=2\left(\frac{1}{252}\right)\\ &=\frac{2}{252}\\ &\approx 0.00794. \end{aligned} \]
+	\item \textbf{Melakukan Westfall-Young Permutation Correction}
+	Pada tahap ini, anggap telah terdapat banyak kandidat yang diperiksa. 
+	Oleh karena itu, kemungkinan adanya kandidat yang menghasilkan $p$-value kecil secara kebetulan akan meningkat. 
+	Untuk tahap ini, kita akan melakukan permutasi terhadap label $Y$.
+	Anggap kita melakukan permutasi label $Y$ dan membuat label baru $Y^1 = (1,1,1,0,0,1,0,0,1,0)$.
+	Kemudian akan dilakukannya lagi Fisher's Exact Test terhadap semua kandidat tadi tetapi menggunakan label $Y^1$.
+	Karena kita memiliki 10 lintasan dengan 5 positif dan 5 negatif sehingga jumlah permutasi yang dilakukan yaitu \[ B = \binom{10}{5} = \frac{10!}{5!*5!} = 252 \] kombinasi berbeda.
+	Pada setiap batch permutasi akan dibentuk list $p$-value baru, dari semua $p$-value yang ditemukan, ambil yang terkecil.
+
+	Contohnya adalah untuk $Y^1 = (1,1,1,0,0,1,0,0,1,0)$ \\
+	Anggap kita dapat \\
+	\begin{tabular}{l|r}
+		\textbf{Kandidat} & \textbf{$p$-value} \\
+		\midrule
+		$S_a$ & $0.16667$ \\
+		$S_b$ & $0.52381$ \\
+		$S_c$ & $0.52381$ \\
+	\end{tabular} \\
+	Maka kita akan mengambil $P_{min}^1 = 0.16667$.
+
+	Contoh kita akan mencoba melakukan beberapa permutasi \\
+	\begin{tabular}{r|c|c|c|c}
+		\textbf{Permutasi} & \textbf{$p(S_a)$} & \textbf{$p(S_b)$} & \textbf{$p(S_c)$} & \textbf{Minimum} \\
+		\midrule
+		Original & 0.00794 & 0.04762 & 0.16667 & 0.00794 \\
+		1 & 0.16667 & 0.52381 & 0.52381 & 0.16667 \\
+		2 & 0.04762 & 0.16667 & 0.52381 & 0.04762 \\
+		3 & 0.52381 & 0.04762 & 0.16667 & 0.04762 \\
+		4 & 0.00794 & 0.04762 & 0.16667 & 0.00794 \\
+		5 & 0.16667 & 1.00000 & 0.52381 & 0.16667 \\
+		\ldots & \ldots & \ldots & \ldots & \ldots \\
+	\end{tabular} \\
+	Dan didapatkan distribusi \[ 0.16667, 0.04762, 0.04762, 0.00794, 0.16667,\ldots \]
+	Selanjutnya untuk mendapatkan threshold yang baru, setelah melakukan contohnya 252 permutasi, kami akan mempunyai 252 $p_{min}^x$. 
+	Nilai tersebut kemudian akan diurutkan mulai dari yang paling kecil hingga yang paling besar. Contohnya : \\
+	\begin{tabular}{r|c}
+		\textbf{Urutan} & \textbf{Minimum $p$-value} \\
+		\midrule
+		1 & 0.00794 \\
+		2 & 0.00794 \\
+		3 & 0.04762 \\
+		4 & 0.04762 \\
+		\ldots & \ldots \\
+		12 & 0.04762 \\
+		13 & 0.05 \\
+		\ldots	& \ldots \\
+		252 & 0.05 \\
+	\end{tabular}
+
+	Sekarang dapat dengan $\alpha = 0.05$ dan $B = 252$ dapat dihitung sebagai \[ \lfloor \alpha B = 0.05(252) = 12.6 \rfloor \]
+	Sehingga dari tabel list $p_min^x$ kami mengambil nilai ke-12 yaitu $\delta = 0.04762$ dan inilah yang akan menjadi threshold baru.
+	Kita kemudian akan melihat lagi nilai-nilai $p$-value yang menggunakan data label original dan filter lagi menggunakan threshold yang baru.
+	\item Menentukan apakah cabang perlu dieksplorasi atau di-prune \\
+	Sekarang setelah kita mendapatkan threshold baru, kita dapat menentukan mana yang dapat di \textit{prune}.
+	Pada stat-dsm, algoritma menentukan bagian mana yang dapat di \textit{prune} menggunakan lower bound terhadap $p$-value untuk menentukan apa yang dapat dicapai oleh descendant dari suatu node.
+	Stat-DSM kemudian membandingkan lower bound tersebut dengan threshold yang berasal dari distribusi Westfall-Young.
+	Pruning dan pembentukan distribusi WY dilakukan secara bersamaan untuk mengurangi jumlah kandidat yang harus diproses.
+	Anggap kita memiliki $\delta = 0.02$, kemudian kita menghitung lower bound $S_d$ yaitu $LB(S_d) = 0.05$.
+	Angka ini memiliki arti bahwa semua kandidat descendant dari $S_d \geq 0.05$ dan karena $\delta = 0.02$ sehingga $0.05 \geq 0.02$ dan algoritma tahu untuk melakukan \textit{prune} terhadap $S_d$
+	Semakin kecil support pada suatu sub-lintasan makan semakin sulit juga untuk kandidat tersebut untuk menghasilkan $p$-value yang kecil.
+	Setalah dilakukannya \textit{pruning}, dibuatnya lagi kandidat-kandidat baru dengan length yang lebih panjang dari branch yang berhasil lolos dan dilakukannya lagi semua langkah dari awal.
+\end{enumerate}
 
 \section{Rumusan Masalah}
 
