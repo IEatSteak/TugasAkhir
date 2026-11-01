@@ -91,7 +91,7 @@ Untuk permasalahan yang pertama, Stat-DSM perlu dapat mencari kemiripan antar li
 Stat-DSM akan mencari pola-pola pergerakan dalam sebuah lintasan yang sama dengan melihat titik-titik pada sebuah lintasan.
 Tetapi tidak dapat sebatas dilakukannya perbandingan dan melihat apakah sama atau tidak karena setiap titik demi titik tidak akan identikal.
 Oleh karen itu diperlukannya sebuah fungsi jarak untuk menyatakan seberapa mirip titik-titik kedua lintasan untuk dianggap sebagai sama.
-Fungsi jarak tersebut secara umum dinotasikan dengan $d(S,T) \leq \epsilon$ dimana $d$ = fungsi jarak dan $\epsilon$ = similarity threshold.
+Fungsi jarak tersebut secara umum dinotasikan dengan $d(S,T) \leq \varepsilon$ dimana $d$ = fungsi jarak dan $\varepsilon$ = similarity threshold.
 Anggap terdapat sebuah kandidat sub-lintasan $S$, untuk setiap lintasan akan dilihat
 \begin{equation}
 	X_i(S) = \begin{cases} 
@@ -243,7 +243,7 @@ Lalu setelah kita memiliki \textit{Candidate tree}, kami dapat mengimplementasik
 Secara menyeluruh, cara kerja stat-DSM adalah dengan
 \begin{enumerate}
 	\item Generate kandidat sub-lintasan $S$
-	\item Mencari dataset untuk lintasan-lintasan yang memiliki segmen dengan jarak yang mirip dengan $S$ dinotasikan dengan $d(S,T_i)\leq\epsilon$
+	\item Mencari dataset untuk lintasan-lintasan yang memiliki segmen dengan jarak yang mirip dengan $S$ dinotasikan dengan $d(S,T_i)\leq\varepsilon$
 	\item Lalu representasi setiap lintasan dengan $X_i(S)\in\{0,1\}$
 	\item Gabungkan $X_i$ yang baru dibuat dengan label kelas $Y_i$
 	\item Buatlah \textit{contingency table}
@@ -259,7 +259,7 @@ Parameter :
 	\item $n = 10$
 	\item $n_+ = 5$, $n_- = 5$
 	\item $min_l = 2$
-	\item $\epsilon = 0$
+	\item $\varepsilon = 0$
 	\item $\alpha = 0.05$
 \end{enumerate}
 
@@ -283,8 +283,8 @@ Data :
 	\item \textbf{Generate kandidat sub-lintasan $S$} \\
 	Pertama harus mengambil sub-lintasan dari data set yang panjang sub-lintasan tidak kurang dari $min_l = 2$ \\
 	Contoh : \\ $S_a = [(0,0),(1,0)]$ \\ $S_b = [(0,0),(1,0),(2,0)]$ \\ $S_c = [(0,0),(1,0),(2,0),(3,0)]$
-	\item \textbf{Mencari lintasan yang memenuhi $d(S,T_i) \leq \epsilon$} \\
-	Untuk setiap kandidat yang ditemukan, algoritma kemudian akan mencari lintasan yang memiliki segmen sub-lintasan yang sesuai dengan kandidat tersebut. Pada tes kasus ini, ditetapkan $\epsilon = 0$ yang berarti bahwa agar dinyatakan dua segmen sebagai mirip, jaraknya harus $\leq 0$. \\
+	\item \textbf{Mencari lintasan yang memenuhi $d(S,T_i) \leq \varepsilon$} \\
+	Untuk setiap kandidat yang ditemukan, algoritma kemudian akan mencari lintasan yang memiliki segmen sub-lintasan yang sesuai dengan kandidat tersebut. Pada tes kasus ini, ditetapkan $\varepsilon = 0$ yang berarti bahwa agar dinyatakan dua segmen sebagai mirip, jaraknya harus $\leq 0$. \\
 	Contoh : \\
 	\begin{tabular}{l|c|r}
 		\textbf{Kandidat} & \textbf{Lintasan yang cocok} & \textbf{Support} \\
@@ -300,8 +300,8 @@ Data :
 	Representasikan dengan 
 	\begin{equation}
 		X_i(S) = \begin{cases} 
-			1 & d(S,T_i) \leq \epsilon \\ 
-			0 & d(S,T_i) \ge \epsilon
+			1 & d(S,T_i) \leq \varepsilon \\ 
+			0 & d(S,T_i) \ge \varepsilon
 		\end{cases}
 	\end{equation} 
 	Sehingga \\ $X(S_a) = (1,1,1,1,1,0,0,0,0,0)$ \\ $X(S_b) = (1,1,1,1,0,0,0,0,0,0)$ \\ $X(S_c) = (1,1,1,0,0,0,0,0,0,0)$ \\
@@ -392,8 +392,8 @@ Data :
 		252 & 0.05 \\
 	\end{tabular}
 
-	Sekarang dapat dengan $\alpha = 0.05$ dan $B = 252$ dapat dihitung sebagai \[ \lfloor \alpha B = 0.05(252) = 12.6 \rfloor \]
-	Sehingga dari tabel list $p_min^x$ kami mengambil nilai ke-12 yaitu $\delta = 0.04762$ dan inilah yang akan menjadi threshold baru.
+	Sekarang dapat dengan $\alpha = 0.05$ dan $B = 252$ dapat dihitung sebagai \[ \alpha B = \lfloor 0.05(252) \rfloor = \lfloor 12.6 \rfloor = 12 \]
+	Sehingga dari tabel list $p_{min}^x$ kami mengambil nilai ke-12 yaitu $\delta = 0.04762$ dan inilah yang akan menjadi threshold baru.
 	Kita kemudian akan melihat lagi nilai-nilai $p$-value yang menggunakan data label original dan filter lagi menggunakan threshold yang baru.
 	\item Menentukan apakah cabang perlu dieksplorasi atau di-prune \\
 	Sekarang setelah kita mendapatkan threshold baru, kita dapat menentukan mana yang dapat di \textit{prune}.
@@ -405,6 +405,8 @@ Data :
 	Semakin kecil support pada suatu sub-lintasan makan semakin sulit juga untuk kandidat tersebut untuk menghasilkan $p$-value yang kecil.
 	Setalah dilakukannya \textit{pruning}, dibuatnya lagi kandidat-kandidat baru dengan length yang lebih panjang dari branch yang berhasil lolos dan dilakukannya lagi semua langkah dari awal.
 \end{enumerate}
+
+
 
 \section{Rumusan Masalah}
 

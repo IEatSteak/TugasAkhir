@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1792854111.20234 "c:/Unpar/TA/TA1/TugasAkhir/doc/ProgressReport/document.tex" "document.pdf" "document" 1792854113.57189 0
+["pdflatex"] 1793442037.7207 "c:/Unpar/TA/TA1/TugasAkhir/doc/ProgressReport/document.tex" "document.pdf" "document" 1793442040.22139 0
   "C:/Users/Vince Farrel. N/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1792581919 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/Vince Farrel. N/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecbx1000.pk" 1792203558 25420 894cc9a8f5ea987a583d8d9c34193f46 ""
   "C:/Users/Vince Farrel. N/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecbx1440.pk" 1788961907 40136 b107594545c0e53137de0d3105762368 ""
@@ -162,9 +162,9 @@
   "C:/Users/Vince Farrel. N/AppData/Local/Programs/MiKTeX/tex/latex/setspace/setspace.sty" 1670403145 22490 8cac309b79a4c53a4ffce4b1b07aead0 ""
   "C:/Users/Vince Farrel. N/AppData/Local/Programs/MiKTeX/tex/latex/trimspaces/trimspaces.sty" 1253169183 1380 971a51b00a14503ddf754cab24c3f209 ""
   "C:/Users/Vince Farrel. N/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
-  "c:/Unpar/TA/TA1/TugasAkhir/doc/ProgressReport/document.tex" 1792854110 25228 d97a28dbe6a2a1e5343e5b6484295b80 ""
-  "document.aux" 1792854113 1421 22e14708c3159ecbcf523be92ae52ebe "pdflatex"
-  "document.tex" 1792854110 25228 d97a28dbe6a2a1e5343e5b6484295b80 ""
+  "c:/Unpar/TA/TA1/TugasAkhir/doc/ProgressReport/document.tex" 1793442039 25279 9bcc47f21d1e2b737dc23da249b51e4d ""
+  "document.aux" 1793442039 1421 22e14708c3159ecbcf523be92ae52ebe "pdflatex"
+  "document.tex" 1793442039 25279 9bcc47f21d1e2b737dc23da249b51e4d ""
   (generated)
   "document.aux"
   "document.log"
